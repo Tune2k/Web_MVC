@@ -61,3 +61,10 @@ D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2
 D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.dll
 D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\refint\TranNhatTu_2122110250.dll
 D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.pdb
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.deps.json
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.runtimeconfig.json
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.pdb
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.genruntimeconfig.cache
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\ref\TranNhatTu_2122110250.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.RazorAssemblyInfo.cache
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.RazorAssemblyInfo.cs

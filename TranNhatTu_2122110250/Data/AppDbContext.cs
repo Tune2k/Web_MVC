@@ -10,7 +10,7 @@ namespace TranNhatTu_2122110250.Data
 		public DbSet<Category> Category { get; set; }
 		public DbSet<Order> Order { get; set; }
 		public DbSet<OrderDetail> OrderDetail { get; set; }
-		public DbSet<Cart> Carts { get; set; }
-		public DbSet<CartItem> CartItems { get; set; }
+		//public DbSet<Cart> Carts { get; set; }
+		//public DbSet<CartItem> CartItems { get; set; }
 	}
 }

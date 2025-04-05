@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TranNhatTu_2122110250.Model.Product>
+
+@{
+    ViewData["Title"] = "Danh sách Sản phẩm";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Ảnh</th>
+            <th>Người tạo</th>
+            <th>Ngày tạo</th>
+            <th>Người sửa</th>
+            <th>Ngày sửa</th>
+            <th>Người xóa</th>
+            <th>Ngày xóa</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price.ToString("C")</td>
+                <td>
+                    <img src="@product.Image" alt="Ảnh" width="100" />
+                </td>
+                <td>@product.CreatedBy</td>
+                <td>@product.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>@product.UpdatedBy</td>
+                <td>@product.UpdatedDate.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>@product.DeletedBy</td>
+                <td>@product.DeletedDate.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                <td>
+                    <!-- Các hành động: Sửa, Xóa, Chi tiết -->
+                    <a href="@Url.Action("Edit", "Products", new { id = product.Id })" class="btn btn-primary btn-sm">Sửa</a>
+                    <a href="@Url.Action("Details", "Products", new { id = product.Id })" class="btn btn-info btn-sm">Chi tiết</a>
+                    <a href="@Url.Action("Delete", "Products", new { id = product.Id })" class="btn btn-danger btn-sm">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Link để thêm sản phẩm mới -->
+<a href="@Url.Action("Create", "Products")" class="btn btn-success">Thêm mới</a>
