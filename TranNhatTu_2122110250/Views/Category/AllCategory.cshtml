@@ -1,0 +1,25 @@
+﻿@model List<TranNhatTu_2122110250.Model.Category>
+
+@{
+    ViewData["Title"] = "Danh mục sản phẩm";
+}
+
+<section class="section-content padding-y">
+    <div class="container">
+        <h3>Tất cả danh mục sản phẩm</h3>
+        <div class="row">
+            @foreach (var category in Model)
+            {
+                <div class="col-md-3">
+                    <div class="card">
+@*                         <img src="~/images/categories/@category.Image" class="card-img-top" alt="@category.Name">
+ *@                        <div class="card-body">
+                            <h5 class="card-title">@category.Name</h5>
+                            <a href="@Url.Action("AllProductList", "ProductView", new { categoryId = category.Id })" class="btn btn-primary">Xem sản phẩm</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

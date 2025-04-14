@@ -1,0 +1,55 @@
+﻿@model List<TranNhatTu_2122110250.Model.CartItem>
+
+<h2>Giỏ hàng của bạn</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
+
+@if (Model == null || !Model.Any())
+{
+    <p>Giỏ hàng của bạn đang trống.</p>
+}
+else
+{
+    <form asp-controller="Cart" asp-action="Update" method="post">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Giá</th>
+                    <th>Tổng</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>
+                            <input type="number" name="quantity" value="@item.Quantity" min="1" max="@item.Stock" class="form-control" />
+                        </td>
+                        <td>@item.Price.ToString("N0") VNĐ</td>
+                        <td>@(item.Price * item.Quantity).ToString("N0") VNĐ</td>
+                        <td>
+                            <a href="@Url.Action("Remove", "Cart", new { id = item.ProductId })" class="btn btn-danger btn-sm">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Cập nhật số lượng sản phẩm -->
+        <button type="submit" class="btn btn-primary">Cập nhật giỏ hàng</button>
+    </form>
+
+    <div class="mt-3">
+        <h4>Tổng tiền: @Model.Sum(item => item.Price * item.Quantity).ToString("N0") VNĐ</h4>
+        <a href="@Url.Action("Index", "Order")" class="btn btn-success">Tiến hành thanh toán</a>
+    </div>
+}

@@ -10,7 +10,17 @@ namespace TranNhatTu_2122110250.Data
 		public DbSet<Category> Category { get; set; }
 		public DbSet<Order> Order { get; set; }
 		public DbSet<OrderDetail> OrderDetail { get; set; }
-		//public DbSet<Cart> Carts { get; set; }
-		//public DbSet<CartItem> CartItems { get; set; }
-	}
+		public DbSet<User> User { get; set; }
+		public DbSet<Brands> Brands { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Cart>()
+                .HasMany(c => c.Items)
+                .WithOne(ci => ci.Cart)
+                .HasForeignKey(ci => ci.CartId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
 }

@@ -1,0 +1,46 @@
+﻿@model List<TranNhatTu_2122110250.Model.Product>
+
+@if (Model == null || !Model.Any())
+{
+    <div class="text-center text-muted mt-4">
+        <h5>Chưa có sản phẩm nào</h5>
+    </div>
+}
+else
+{
+    foreach (var product in Model)
+    {
+<div class="recommend-section">
+    <div class="card">
+        <div class="model">
+            @if (!string.IsNullOrWhiteSpace(product.Model3D))
+            {
+                <model-viewer src="@(Url.Content("~/models/" + product.Model3D))"
+                              shadow-intensity="0.4"
+                              auto-rotate
+                              camera-controls
+                              style="width: 100%; height: 90%;">
+                </model-viewer>
+            }
+            else
+            {
+                <img src="~/images/products/@product.Image" alt="@product.Name" />
+            }
+        </div>
+        <div class="glass"></div>
+        <div class="content">
+            <h2>@product.Name</h2>
+            <p>Giá: @product.Price.ToString("#,##0") VND</p>
+            <div class="options">
+                <div onclick="changeModelStyle(this, 0);" style="background: #f2c173;"></div>
+                <div onclick="changeModelStyle(this, 60);" style="background: #96dd78;"></div>
+                <div onclick="changeModelStyle(this, 110);" style="background: #6ee5bc;"></div>
+            </div>
+
+            <a href="@Url.Action("GetProductById", "ProductView", new { id = product.Id })" class="btn btn-primary">Xem chi tiết</a>
+
+        </div>
+    </div>
+</div>
+    }
+}

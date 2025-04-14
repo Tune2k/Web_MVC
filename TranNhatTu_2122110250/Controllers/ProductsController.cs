@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization; // 👈 Thêm namespace này
+using Microsoft.AspNetCore.Mvc;
 using TranNhatTu_2122110250.Data;
 using TranNhatTu_2122110250.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace TranNhatTu_2122110250.Controllers
 {
+    [Authorize] // 👈 BẮT BUỘC phải có token mới truy cập được
     [ApiController]
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
@@ -16,7 +18,7 @@ namespace TranNhatTu_2122110250.Controllers
             _context = context;
         }
 
-        // GET: api/product
+
         // GET: api/product
         [HttpGet]
         public async Task<IActionResult> GetAllProducts()
@@ -28,12 +30,10 @@ namespace TranNhatTu_2122110250.Controllers
             }
             catch (Exception ex)
             {
-                // Log the error (you can replace Console.WriteLine with a logging framework)
                 Console.WriteLine($"Error: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }
-
 
         // GET: api/product/{id}
         [HttpGet("{id}")]
