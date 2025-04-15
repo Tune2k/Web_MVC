@@ -4,8 +4,7 @@
 @inject IHttpContextAccessor HttpContextAccessor
 
 @{
-    var session = HttpContextAccessor.HttpContext.Session;  
-    var loggedInUsername = session.GetString("Username");  // Lấy thông tin username từ session
+    var session = HttpContextAccessor.HttpContext.Session;
 }
 <!DOCTYPE html>
 <html lang="vi">
@@ -17,7 +16,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/home/style.css" />
-    @* <link rel="stylesheet" href="~/css/custom.css" /> *@
     <link rel="stylesheet" href="~/css/home/recommend.css?v=2" />
 </head>
 
@@ -27,19 +25,14 @@
     <!-- HEADER -->
     <header class="bg-primary text-white p-3 mb-4">
         <div class="container d-flex justify-content-between align-items-center">
-            <!-- Link về trang chủ -->
             <h1 class="h3 mb-0">
                 <a href="@Url.Action("Index", "Home")" class="text-white text-decoration-none">Website bán hàng</a>
             </h1>
 
             <div class="d-flex align-items-center">
                 @{
-                    var session = HttpContextAccessor.HttpContext.Session;
                     var cart = session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
                     var cartCount = cart.Sum(c => c.Quantity);
-                    var loggedInUsername = session.GetString("Username");
-                    // var userName = HttpContext.User.Identity.Name;
-
                 }
 
                 <!-- Giỏ hàng -->
@@ -47,25 +40,23 @@
                     <i class="fas fa-shopping-cart fa-lg"></i> Giỏ hàng (@cartCount)
                 </a>
 
-            @if (User.Identity.IsAuthenticated)
-{
-    <span class="me-2">Xin chào, <strong>@User.Identity.Name</strong></span>
-    <form method="post" asp-controller="Account" asp-action="Logout">
-        <button type="submit" class="btn btn-danger">Đăng xuất</button>
-    </form>
-}
-else
-{
-    <a href="@Url.Action("Login", "Account")" class="text-white me-3">
-        <i class="fas fa-sign-in-alt fa-lg"></i> Đăng nhập
-    </a>
-}
-
-
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span class="me-2">Xin chào, <strong>@User.Identity.Name</strong></span>
+                    <form method="post" asp-controller="Account" asp-action="Logout">
+                        <button type="submit" class="btn btn-danger">Đăng xuất</button>
+                    </form>
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="text-white me-3">
+                        <i class="fas fa-sign-in-alt fa-lg"></i> Đăng nhập
+                    </a>
+                }
 
                 <a href="@Url.Action("Profile", "User")" class="text-white me-3">
-                        <i class="fas fa-user fa-lg"></i> Tài khoản
-                    </a>
+                    <i class="fas fa-user fa-lg"></i> Tài khoản
+                </a>
             </div>
         </div>
     </header>
@@ -83,8 +74,6 @@ else
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="~/js/home/script.js"></script>
-@*     <script src="~/js/site.js"></script>
- *@
     @RenderSection("Scripts", required: false)
 </body>
 </html>

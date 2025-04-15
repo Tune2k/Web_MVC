@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/admin/proStyle.css" rel="stylesheet" />
+}
+<div class="category-header">
+    <h2>Danh sách danh mục</h2>
+
+    <a href="/Admin/Category/Create" class="btn-add">+ Thêm danh mục</a>
+</div>
+
+
+<table class="category-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên danh mục</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.Id</td>
+                <td>@category.Name</td>
+                <td>
+                    <a href="/Admin/Category/Edit/@category.Id" class="btn btn-edit">Sửa</a>
+                    <a href="/Admin/Category/Delete/@category.Id" class="btn btn-delete" >Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -48,7 +48,7 @@ namespace TranNhatTu_2122110250.Controllers
 
             if (categoryId.HasValue && categoryId > 0)
             {
-                productsQuery = productsQuery.Where(p => p.Category_id == categoryId);
+                productsQuery = productsQuery.Where(p => p.CategoryId == categoryId);
             }
 
             var products = productsQuery.OrderByDescending(p => p.Id).ToList();
@@ -73,7 +73,7 @@ namespace TranNhatTu_2122110250.Controllers
 
             if (categoryId.HasValue)
             {
-                productsQuery = productsQuery.Where(p => p.Category_id == categoryId);
+                productsQuery = productsQuery.Where(p => p.CategoryId == categoryId);
             }
 
             // Sắp xếp và phân trang
@@ -101,7 +101,7 @@ namespace TranNhatTu_2122110250.Controllers
             else
             {
                 products = _context.Products
-                                   .Where(p => p.Category_id == categoryId)
+                                   .Where(p => p.CategoryId == categoryId)
                                    .ToList();
             }
 

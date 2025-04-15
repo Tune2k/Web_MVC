@@ -1,0 +1,45 @@
+﻿@model TranNhatTu_2122110250.Model.Product
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+    ViewData["Title"] = "Xóa sản phẩm";
+}
+
+@section Styles {
+    <link href="~/css/admin/productForm.css" rel="stylesheet" />
+}
+
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title text-danger">⚠️ Xác nhận xóa sản phẩm</h2>
+
+        <form asp-action="Delete" method="post" class="product-form">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <p>Bạn có chắc chắn muốn xóa sản phẩm sau?</p>
+                <ul class="product-delete-info">
+                    <li><strong>Tên sản phẩm:</strong> @Model.Name</li>
+                    <li><strong>Giá:</strong> @Model.Price.ToString("N0") VNĐ</li>
+                    <li><strong>Số lượng:</strong> @Model.Stock</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label>Ảnh sản phẩm:</label><br />
+                <img src="@Model.Image" alt="@Model.Name" style="max-width: 200px; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 10px;" />
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-danger">❌ Xóa</button>
+                <a href="/Admin/Product/Index" class="btn btn-secondary">⬅ Quay lại</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Nếu cần, có thể thêm JavaScript xử lý ở đây
+    </script>
+}

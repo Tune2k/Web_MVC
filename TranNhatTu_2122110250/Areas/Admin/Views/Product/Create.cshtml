@@ -1,0 +1,114 @@
+﻿@model TranNhatTu_2122110250.ViewModels.ProductCreateViewModel
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/admin/productForm.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.getElementById('previewImage');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputFile = document.getElementById('imageFile');
+            if (inputFile) {
+                inputFile.addEventListener('change', function () {
+                    previewImage(this);
+                });
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var categories = @Html.Raw(Json.Serialize(Model.Categories));  // Chuyển danh sách Categories sang JSON và in ra console
+
+            console.log("Danh mục đã tải:", categories);
+
+            // Kiểm tra xem categories có chứa các mục không
+            if (categories.length === 0) {
+                console.log("Không có danh mục nào.");
+            } else {
+                categories.forEach(function (category) {
+                    console.log("Category ID: " + category.value + ", Category Name: " + category.text);
+                });
+            }
+        }
+    </script>
+
+}
+
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title">➕ Thêm sản phẩm mới</h2>
+
+        <form asp-action="Create" method="post" enctype="multipart/form-data" class="product-form">
+            <div class="form-group">
+                <label asp-for="Product.Name">Tên sản phẩm</label>
+                <input asp-for="Product.Name" class="form-control" placeholder="Nhập tên sản phẩm" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Product.Price">Giá</label>
+                <input asp-for="Product.Price" class="form-control" type="number" min="0" step="1000" placeholder="Nhập giá bán" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Product.Description">Mô tả sản phẩm</label>
+                <textarea asp-for="Product.Description" class="form-control" rows="4" placeholder="Mô tả chi tiết..."></textarea>
+                <span asp-validation-for="Product.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Product.Stock">Tồn kho</label>
+                <input asp-for="Product.Stock" class="form-control" type="number" min="0" placeholder="Số lượng tồn" />
+                <span asp-validation-for="Product.Stock" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Product.Model3D">Model 3D (tùy chọn)</label>
+                <input asp-for="Product.Model3D" class="form-control" placeholder="Bỏ trống nếu không có" />
+                <span asp-validation-for="Product.Model3D" class="text-danger"></span>
+            </div>
+
+            <!-- CartCount có thể được ẩn nếu mặc định là 0 -->
+            <input type="hidden" asp-for="Product.CartCount" value="0" />
+
+            <div class="form-group">
+                <label asp-for="Product.CategoryId">Danh mục</label>
+                <select asp-for="Product.CategoryId" asp-items="Model.Categories" class="form-control">
+                    <option value="">-- Chọn danh mục --</option>
+                </select>
+                <span asp-validation-for="Product.Category_id" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Ảnh sản phẩm</label>
+                <div class="image-preview mt-2">
+                    <input type="file" id="imageFile" name="imageFile" class="form-control-file" />                
+                    <img id="previewImage" style="display: none; max-width: 200px;" />
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success">💾 Lưu sản phẩm</button>
+                <a href="/Admin/Product/Index" class="btn btn-secondary">⬅ Quay lại</a>
+            </div>
+        </form>
+    </div>
+</div>
+

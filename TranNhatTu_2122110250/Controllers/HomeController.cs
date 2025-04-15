@@ -29,7 +29,7 @@ namespace TranNhatTu_2122110250.Controllers
 
             foreach (var product in productRecommended)
             {
-                var category = _context.Category.FirstOrDefault(c => c.Id == product.Category_id);
+                var category = _context.Category.FirstOrDefault(c => c.Id == product.CategoryId);
                 if (category != null)
                 {
                     product.Category_name = category.Name;

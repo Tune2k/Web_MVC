@@ -1,6 +1,26 @@
 {
   "Files": [
     {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\css\\admin\\categoryForm.css",
+      "PackagePath": "staticwebassets\\css\\admin\\categoryForm.css"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\css\\admin\\proStyle.css",
+      "PackagePath": "staticwebassets\\css\\admin\\proStyle.css"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\css\\admin\\productForm.css",
+      "PackagePath": "staticwebassets\\css\\admin\\productForm.css"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\css\\admin\\style.css",
+      "PackagePath": "staticwebassets\\css\\admin\\style.css"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\css\\admin\\userForm.css",
+      "PackagePath": "staticwebassets\\css\\admin\\userForm.css"
+    },
+    {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\css\\home\\recommend.css",
       "PackagePath": "staticwebassets\\css\\home\\recommend.css"
     },
@@ -105,6 +125,14 @@
       "PackagePath": "staticwebassets\\images\\icons\\.DS_Store"
     },
     {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\category.png",
+      "PackagePath": "staticwebassets\\images\\icons\\category.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\chart.png",
+      "PackagePath": "staticwebassets\\images\\icons\\chart.png"
+    },
+    {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\flags\\AU.png",
       "PackagePath": "staticwebassets\\images\\icons\\flags\\AU.png"
     },
@@ -177,6 +205,18 @@
       "PackagePath": "staticwebassets\\images\\icons\\flags\\UZ@2x.png"
     },
     {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\notes.png",
+      "PackagePath": "staticwebassets\\images\\icons\\notes.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\order-detail.png",
+      "PackagePath": "staticwebassets\\images\\icons\\order-detail.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\order.png",
+      "PackagePath": "staticwebassets\\images\\icons\\order.png"
+    },
+    {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\pay-american-ex.png",
       "PackagePath": "staticwebassets\\images\\icons\\pay-american-ex.png"
     },
@@ -195,6 +235,30 @@
     {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\pay-visa.png",
       "PackagePath": "staticwebassets\\images\\icons\\pay-visa.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\product.png",
+      "PackagePath": "staticwebassets\\images\\icons\\product.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\setting.png",
+      "PackagePath": "staticwebassets\\images\\icons\\setting.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\shopping-bag.png",
+      "PackagePath": "staticwebassets\\images\\icons\\shopping-bag.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\shopping-cart.png",
+      "PackagePath": "staticwebassets\\images\\icons\\shopping-cart.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\user.png",
+      "PackagePath": "staticwebassets\\images\\icons\\user.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\logo\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo\\logo.png"
     },
     {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\1.jpg",

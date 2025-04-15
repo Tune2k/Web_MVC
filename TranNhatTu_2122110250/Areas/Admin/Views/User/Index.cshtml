@@ -1,0 +1,46 @@
+﻿@model List<TranNhatTu_2122110250.Model.User>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/admin/proStyle.css" rel="stylesheet" />
+}
+
+
+<div class="user-container">
+    <div class="user-header">
+        <h2>👤 Danh sách người dùng</h2>
+        @* <a href="/Admin/User/Create" class="btn-add">+ Thêm người dùng</a> *@
+    </div>
+    <div style="overflow-x: auto;">
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Họ</th>
+                    <th>Tên</th>
+                    <th>Email</th>
+                    <th>Mật khẩu</th> <!-- Cột mật khẩu -->
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.Email</td>
+                        <td>@item.Password</td> <!-- Hiển thị mật khẩu -->
+                        <td>
+                            @* <a href="/Admin/User/Edit/@item.Id" class="btn btn-edit">Sửa</a> *@
+                            <a href="/Admin/User/Delete/@item.Id" class="btn btn-delete" >Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

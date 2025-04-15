@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/admin/categoryForm.css" rel="stylesheet" />
+}
+
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title">✏️ Cập nhật danh mục</h2>
+
+        <form asp-action="Edit" method="post" class="category-form">
+            <input type="hidden" name="Id" value="@Model.Id" />
+
+            <div class="form-group">
+                <label for="Name">Tên danh mục</label>
+                <input type="text" id="Name" name="Name" value="@Model.Name" required placeholder="Nhập tên danh mục..." />
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Cập nhật</button>
+                <a href="/Admin/Category/Index" class="btn-cancel">Hủy</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -196,28 +196,19 @@ namespace TranNhatTu_2122110250.Migrations
                     b.Property<int>("CartCount")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
-
-                    b.Property<int>("Category_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Category_name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DeletedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DeletedDate")
+                    b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -229,7 +220,6 @@ namespace TranNhatTu_2122110250.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Model3D")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -243,10 +233,9 @@ namespace TranNhatTu_2122110250.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedDate")
+                    b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -332,9 +321,13 @@ namespace TranNhatTu_2122110250.Migrations
 
             modelBuilder.Entity("TranNhatTu_2122110250.Model.Product", b =>
                 {
-                    b.HasOne("TranNhatTu_2122110250.Model.Category", null)
+                    b.HasOne("TranNhatTu_2122110250.Model.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("TranNhatTu_2122110250.Model.Cart", b =>

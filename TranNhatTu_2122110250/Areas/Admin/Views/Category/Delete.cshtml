@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/admin/categoryForm.css" rel="stylesheet" />
+}
+
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title text-danger">🗑️ Xóa danh mục</h2>
+
+        <p class="form-warning">
+            Bạn có chắc chắn muốn xóa danh mục <strong>@Model.Name</strong>?<br />
+            Hành động này không thể hoàn tác.
+        </p>
+
+        <form asp-action="DeleteConfirmed" method="post" class="category-form">
+            <input type="hidden" name="Id" value="@Model.Id" />
+
+            <div class="form-actions">
+                <button type="submit" class="btn-delete">Xóa</button>
+                <a href="/Admin/Category/Index" class="btn-cancel">Hủy bỏ</a>
+            </div>
+        </form>
+    </div>
+</div>

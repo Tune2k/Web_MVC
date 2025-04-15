@@ -48,7 +48,7 @@ public class CartController : Controller
     {
         var userId = GetUserId();
         if (userId == null)
-            return RedirectToAction("Login", "Login");
+            return RedirectToAction("Login", "Account");
 
         var product = _context.Products.FirstOrDefault(p => p.Id == id);
         if (product == null || product.Stock <= 0)
@@ -113,7 +113,7 @@ public class CartController : Controller
         var userId = GetUserId();
         if (userId == null)
         {
-            return RedirectToAction("Login", "Login"); // Redirect nếu chưa đăng nhập
+            return RedirectToAction("Login", "Account"); // Redirect nếu chưa đăng nhập
         }
 
         var cart = _context.Carts
@@ -136,7 +136,7 @@ public class CartController : Controller
         var userId = GetUserId();
         if (userId == null)
         {
-            return RedirectToAction("Login", "Login"); // Redirect nếu chưa đăng nhập
+            return RedirectToAction("Login", "Account"); // Redirect nếu chưa đăng nhập
         }
 
         var cart = _context.Carts

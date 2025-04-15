@@ -127,10 +127,24 @@ app.UseStaticFiles();
 app.UseRouting();
 
 // Đảm bảo route mặc định dẫn tới HomeController và action Index
-app.MapControllerRoute(
+//app.MapControllerRoute(
+//        name: "default",
+//        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    // Route cho Area đặt trước
+    endpoints.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+    // Route mặc định cho trang không có area
+    endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
-
+});
 // Map các API controllers
 app.MapControllers();
 

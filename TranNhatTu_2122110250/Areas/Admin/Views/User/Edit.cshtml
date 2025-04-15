@@ -1,0 +1,56 @@
+﻿@model TranNhatTu_2122110250.Model.User
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/admin/userForm.css" rel="stylesheet" />
+}
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        Có lỗi xảy ra khi bind dữ liệu người dùng!
+    </div>
+}
+
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title">✏️ Chỉnh sửa người dùng</h2>
+
+<form asp-action="Edit" method="post" class="user-form">
+     @Html.AntiForgeryToken() <!-- Thêm dòng này nếu thiếu -->
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="FirstName">Họ</label>
+        <input asp-for="FirstName" class="form-control" placeholder="Nhập họ" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName">Tên</label>
+        <input asp-for="LastName" class="form-control" placeholder="Nhập tên" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" type="email" placeholder="Nhập email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password">Mật khẩu</label>
+        <input asp-for="Password" class="form-control" type="password" placeholder="Nhập mật khẩu" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-success">💾 Lưu người dùng</button>
+        <a href="/Admin/User/Index" class="btn btn-secondary">⬅ Quay lại</a>
+    </div>
+</form>
+
+    </div>
+</div>
+<p><strong>DEBUG:</strong> Id = @Model?.Id, Name = @Model?.FirstName @Model?.LastName, Email = @Model?.Email</p>
