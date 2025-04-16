@@ -1,25 +1,24 @@
-﻿    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
-    namespace TranNhatTu_2122110250.Model
+namespace TranNhatTu_2122110250.Model
+{
+    public class User
     {
-        public class User
-        {
-            public int Id { get; set; }
+        public int Id { get; set; }
 
-            [Display(Name = "Tên người dùng")]
-            public string FirstName { get; set; }
+        [Required]
+        public string Username { get; set; }
 
-            [Display(Name = "Họ người dùng")]
-            public string LastName { get; set; }
+        [Required]
+        public string Email { get; set; }
 
-            [Required(ErrorMessage = "Vui lòng nhập email")]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
 
-            [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
-            [Display(Name = "Mật khẩu")]
-            public string Password { get; set; }
-            public Cart Cart { get; set; }  // Liên kết với giỏ hàng
+        public string Role { get; set; }
 
+        public Cart Cart { get; set; }
     }
-    }
+
+}

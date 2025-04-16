@@ -25,7 +25,15 @@ public class CartController : Controller
 
         if (userId == null)
         {
-            return RedirectToAction("Login", "Account"); // Redirect nếu chưa đăng nhập
+            // In session ra để kiểm tra
+            var allSessionKeys = HttpContext.Session.Keys;
+            foreach (var key in allSessionKeys)
+            {
+                var val = HttpContext.Session.GetString(key);
+                Console.WriteLine($"Session[{key}] = {val}");
+            }
+
+            return RedirectToAction("Login", "Account");
         }
 
         // Lấy giỏ hàng từ cơ sở dữ liệu

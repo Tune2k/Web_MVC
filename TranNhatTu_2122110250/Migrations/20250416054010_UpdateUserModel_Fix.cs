@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TranNhatTu_2122110250.Migrations
 {
-    public partial class Product : Migration
+    public partial class UpdateUserModel_Fix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,12 +14,18 @@ namespace TranNhatTu_2122110250.Migrations
                 table: "Products");
 
             migrationBuilder.DropColumn(
-                name: "Category_id",
-                table: "Products");
-
-            migrationBuilder.DropColumn(
                 name: "Category_name",
                 table: "Products");
+
+            migrationBuilder.RenameColumn(
+                name: "LastName",
+                table: "User",
+                newName: "Username");
+
+            migrationBuilder.RenameColumn(
+                name: "FirstName",
+                table: "User",
+                newName: "Role");
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedDate",
@@ -102,6 +108,16 @@ namespace TranNhatTu_2122110250.Migrations
                 name: "FK_Products_Category_CategoryId",
                 table: "Products");
 
+            migrationBuilder.RenameColumn(
+                name: "Username",
+                table: "User",
+                newName: "LastName");
+
+            migrationBuilder.RenameColumn(
+                name: "Role",
+                table: "User",
+                newName: "FirstName");
+
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdatedDate",
                 table: "Products",
@@ -179,13 +195,6 @@ namespace TranNhatTu_2122110250.Migrations
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "int");
-
-            migrationBuilder.AddColumn<int>(
-                name: "Category_id",
-                table: "Products",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
 
             migrationBuilder.AddColumn<string>(
                 name: "Category_name",

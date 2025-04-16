@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rPwgQe8NN6NGqvUT3WhQkVD8Lw9z6tpkccYNEDfCQ4k=",
+  "Hash": "oy+XzmvDjdX2qIjAYwnQT8Gj4eNLaardHcVd8CDSUpA=",
   "Source": "TranNhatTu_2122110250",
   "BasePath": "_content/TranNhatTu_2122110250",
   "Mode": "Default",
@@ -32,6 +32,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\admin\\categoryForm.css"
+    },
+    {
+      "Identity": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\css\\admin\\login.css",
+      "SourceId": "TranNhatTu_2122110250",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\",
+      "BasePath": "_content/TranNhatTu_2122110250",
+      "RelativePath": "css/admin/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\admin\\login.css"
     },
     {
       "Identity": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\css\\admin\\productForm.css",

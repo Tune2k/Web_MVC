@@ -14,6 +14,7 @@ D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.W
 D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
 D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.WebPages.dll
 D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll

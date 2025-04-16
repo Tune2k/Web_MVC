@@ -57,7 +57,7 @@ namespace TranNhatTu_2122110250.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            Console.WriteLine($"DEBUG: Id = {user.Id}, Name = {user.FirstName} {user.LastName}, Email = {user.Email}");
+            Console.WriteLine($"DEBUG: Id = {user.Id}, Name = {user.Username}, Email = {user.Email}");
             return View(user); // Trả về view với dữ liệu người dùng
         }
 
@@ -81,8 +81,7 @@ namespace TranNhatTu_2122110250.Areas.Admin.Controllers
                     return RedirectToAction(nameof(Index));
                 }
 
-                existingUser.FirstName = user.FirstName;
-                existingUser.LastName = user.LastName;
+                existingUser.Username = user.Username;
                 existingUser.Email = user.Email;
                 existingUser.Password = user.Password;
 

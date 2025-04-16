@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\css\\admin\\categoryForm.css"
     },
     {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\css\\admin\\login.css",
+      "PackagePath": "staticwebassets\\css\\admin\\login.css"
+    },
+    {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\css\\admin\\proStyle.css",
       "PackagePath": "staticwebassets\\css\\admin\\proStyle.css"
     },

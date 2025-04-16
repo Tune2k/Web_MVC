@@ -112,7 +112,10 @@
                 </button>
             </form>
             <div class="admin-profile">
-                <span class="greeting">Hello admin</span>
+                @{
+                    var username = Context.Session.GetString("Username") ?? "Admin";
+                }
+                <span class="greeting">Hello @username</span>                
                 <div class="notifications">
                     <span class="badge">1</span>
                     <img src="~/images/icons/user.png" alt="Người dùng" width="20" height="20" style="margin-right:10px" />

@@ -1,130 +1,125 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using TranNhatTu_2122110250.Data;
-using TranNhatTu_2122110250.Model;
-using TranNhatTu_2122110250.Services;
+﻿//using Microsoft.AspNetCore.Mvc;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
+//using TranNhatTu_2122110250.Data;
+//using TranNhatTu_2122110250.Model;
+//using TranNhatTu_2122110250.Services;
+//using System.Security.Cryptography;
+//using System.Text;
+//using Newtonsoft.Json.Linq;
 
-namespace TranNhatTu_2122110250.Controllers
-{
-    [ApiController]
-    [Route("api/[controller]")]
-    public class LoginController : ControllerBase
-    {
-        private readonly AppDbContext _context;
-        private readonly IConfiguration _config;
-        private readonly IPasswordHasher<User> _passwordHasher;
-        private readonly IUserService _userService;
-        private readonly ITokenService _tokenService;
+//namespace TranNhatTu_2122110250.Controllers
+//{
+//    [ApiController]
+//    [Route("api/[controller]")]
+//    public class LoginController : ControllerBase
+//    {
+//        private readonly AppDbContext _context;
+//        private readonly ITokenService _tokenService;
 
+//        public LoginController(AppDbContext context, ITokenService tokenService)
+//        {
+//            _context = context;
+//            _tokenService = tokenService;
+//        }
 
+//        // ---------- API Đăng ký ----------
+//        [HttpPost("register")]
+//        public IActionResult Register([FromBody] RegisterModel model)
+//        {
+//            if (_context.User.Any(u => u.Email == model.Email))
+//                return Ok(new { Message = "Email đã được sử dụng." });
 
+//            if (_context.User.Any(u => u.Username == model.Username))
+//                return Ok(new { Message = "Tên đăng nhập đã tồn tại." });
 
-        public LoginController(AppDbContext context, IConfiguration config, IPasswordHasher<User> passwordHasher, IUserService userService, ITokenService tokenService)
-        {
-            _context = context;
-            _config = config;
-            _passwordHasher = passwordHasher;
-            _userService = userService;
-            _tokenService = tokenService;
-        }
+//            // Hash password manually
+//            var hashedPassword = HashPassword(model.Password);
 
-        // ---------- API Đăng ký ----------
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] RegisterModel model)
-        {
-            if (_context.User.Any(u => u.Email == model.Email))
-            {
-                return BadRequest("Email đã được sử dụng.");
-            }
+//            var user = new User
+//            {
+//                Username = model.Username,
+//                Email = model.Email,
+//                Role = model.Role ?? "User", // Default role
+//                Password = hashedPassword
+//            };
 
-            var user = new User
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-            };
+//            _context.User.Add(user);
+//            _context.SaveChanges();
 
-            user.Password = _passwordHasher.HashPassword(user, model.Password);
+//            return Ok(new { Message = "Đăng kí thành công"});
+//        }
 
-            _context.User.Add(user);
-            _context.SaveChanges();
+//        // ---------- API Đăng nhập ----------
+//        [HttpPost("login")]
+//        public IActionResult Login([FromBody] LoginModel model)
+//        {
+//            if (string.IsNullOrEmpty(model.Email) || string.IsNullOrEmpty(model.Password))
+//                return Ok(new { Message = "Vui lòng nhập email và mật khẩu." });
 
-            return Ok("Đăng ký thành công");
-        }
+//            var user = _context.User.FirstOrDefault(u => u.Email == model.Email);
+//            if (user == null)
+//                return Ok(new { Message = "Email không tồn tại." });
 
-        // ---------- API Đăng nhập ----------
-        // Đảm bảo trả về JSON thay vì chuyển hướng
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest("Thông tin không hợp lệ.");
+//            if (!VerifyPassword(model.Password, user.Password))
+//                return Ok(new { Message = "Mật khẩu không đúng." });
 
-            var user = await _userService.Authenticate(model.Email, model.Password);
-            if (user == null)
-                return Unauthorized(new { message = "Sai email hoặc mật khẩu." });
+//            var token = _tokenService.GenerateToken(user);
 
-            // Lưu userId vào session
-            HttpContext.Session.SetInt32("UserId", user.Id);
-            HttpContext.Session.SetString("Username", user.FirstName);  // Lưu tên người dùng vào session
+//            // 👉 Ghi username vào session
+//            HttpContext.Session.SetString("Username", user.Username);
 
-            // Tạo danh sách claims
-            var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.Name, user.FirstName), // Lưu tên người dùng vào Claim
-        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()) // Lưu userId vào Claim
-    };
+//            return Ok(new
+//            {
+//                Message = "Đăng nhập thành công",
+//                Token = token,
+//                Username = user.Username
+//            });
+//        }
 
-            // Tạo ClaimsIdentity và ClaimsPrincipal
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+//        [HttpPost("set-session")]
+//        public IActionResult SetSession([FromBody] JObject data)
+//        {
+//            var username = data["username"]?.ToString();
+//            if (!string.IsNullOrEmpty(username))
+//            {
+//                HttpContext.Session.SetString("Username", username);
+//                return Ok(new { Message = "Session đã được thiết lập." });
+//            }
+//            return BadRequest(new { Message = "Thiếu username." });
+//        }
 
-            // Đăng nhập người dùng với cookie authentication
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+//        // ---------- Helper methods for password hashing ----------
+//        private string HashPassword(string password)
+//        {
+//            using (var sha256 = SHA256.Create())
+//            {
+//                var bytes = Encoding.UTF8.GetBytes(password);
+//                var hashBytes = sha256.ComputeHash(bytes);
+//                return Convert.ToBase64String(hashBytes);
+//            }
+//        }
 
-            // Trả về thông tin đăng nhập thành công
-            return Ok(new { message = "Đăng nhập thành công", token = "some-token-here" });
-        }
+//        private bool VerifyPassword(string enteredPassword, string storedHash)
+//        {
+//            var enteredHash = HashPassword(enteredPassword);
+//            return enteredHash == storedHash;
+//        }
+//    }
 
+//    // ✅ Model đăng ký mới (theo Username & Role)
+//    public class RegisterModel
+//    {
+//        public string Username { get; set; }
+//        public string Email { get; set; }
+//        public string Password { get; set; }
+//        public string? Role { get; set; } // Tùy chọn
+//    }
 
-
-
-
-        // ---------- API Đăng xuất ----------
-        [HttpPost]
-        public async Task<IActionResult> Logout()
-        {
-            // Xóa thông tin người dùng khỏi session
-            HttpContext.Session.Remove("UserId");
-
-            // Đăng xuất
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            return RedirectToAction("Index", "Home");
-        }
-
-    }
-
-    // Model cho đăng ký người dùng
-    public class RegisterModel
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
-
-    // Model cho đăng nhập người dùng
-    public class LoginModel
-    {
-        public string Email { get; set; }
-        public string Password { get; set; }
-    }
-}
+//    public class LoginModel
+//    {
+//        public string Email { get; set; }
+//        public string Password { get; set; }
+//    }
+//}

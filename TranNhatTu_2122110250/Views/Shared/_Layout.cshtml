@@ -5,6 +5,8 @@
 
 @{
     var session = HttpContextAccessor.HttpContext.Session;
+    var username = session.GetString("Username");
+    var userId = session.GetInt32("UserId");
 }
 <!DOCTYPE html>
 <html lang="vi">
@@ -30,22 +32,30 @@
             </h1>
 
             <div class="d-flex align-items-center">
-                @{
+                @if (userId != null)
+                {
                     var cart = session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
                     var cartCount = cart.Sum(c => c.Quantity);
+
+                    <a href="@Url.Action("Index", "Cart")" class="text-white me-3">
+                        <i class="fas fa-shopping-cart fa-lg"></i> Giỏ hàng (@cartCount)
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="text-white me-3">
+                        <i class="fas fa-shopping-cart fa-lg"></i> Giỏ hàng (0)
+                    </a>
                 }
 
-                <!-- Giỏ hàng -->
-                <a href="@Url.Action("Index", "Cart")" class="text-white me-3">
-                    <i class="fas fa-shopping-cart fa-lg"></i> Giỏ hàng (@cartCount)
-                </a>
 
-                @if (User.Identity.IsAuthenticated)
+
+                @if (!string.IsNullOrEmpty(username))
                 {
-                    <span class="me-2">Xin chào, <strong>@User.Identity.Name</strong></span>
-                    <form method="post" asp-controller="Account" asp-action="Logout">
-                        <button type="submit" class="btn btn-danger">Đăng xuất</button>
-                    </form>
+                    <span class="me-2">Xin chào, <strong>@username</strong></span>
+                    <a href="@Url.Action("Logout", "Account")" class="text-white me-3">
+                        <i class="fas fa-sign-out-alt fa-lg"></i> Đăng xuất
+                    </a>
                 }
                 else
                 {
@@ -53,6 +63,8 @@
                         <i class="fas fa-sign-in-alt fa-lg"></i> Đăng nhập
                     </a>
                 }
+
+
 
                 <a href="@Url.Action("Profile", "User")" class="text-white me-3">
                     <i class="fas fa-user fa-lg"></i> Tài khoản

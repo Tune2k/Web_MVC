@@ -1,0 +1,41 @@
+﻿@model TranNhatTu_2122110250.Model.Login
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <title>Đăng nhập Admin</title>
+    <link rel="stylesheet" href="~/css/admin/login.css" />
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>Login</h2>
+        <form asp-area="Admin" asp-controller="Account" asp-action="Login" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="user-box">
+                <input asp-for="Email" required />
+                <label asp-for="Email">Email</label>
+            </div>
+            <div class="user-box">
+                <input asp-for="Password" type="password" required />
+                <label asp-for="Password">Password</label>
+            </div>
+            <div style="text-align:center">
+                <button type="submit" class="login-button">Đăng nhập</button>
+            </div>
+            @if (ViewBag.Error != null)
+            {
+                <p style="color:red; text-align:center; margin-top:20px">@ViewBag.Error</p>
+            }
+        </form>
+        @section Scripts {
+            <partial name="_ValidationScriptsPartial" />
+        }
+    </div>
+
+</body>
+</html>

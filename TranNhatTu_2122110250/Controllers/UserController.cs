@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using TranNhatTu_2122110250.Data;
 using TranNhatTu_2122110250.Model;
 
@@ -17,6 +18,39 @@ namespace TranNhatTu_2122110250.Controllers
         {
             _context = context;
         }
+
+
+        // GET: api/user/profile
+        [HttpGet("profile")]
+        public async Task<IActionResult> GetUserProfile()
+        {
+            try
+            {
+                // Lấy thông tin từ claims của token JWT
+                var usernameClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+
+                if (string.IsNullOrEmpty(usernameClaim))
+                {
+                    return Unauthorized(new { error = "User not found" });
+                }
+
+                // Tìm người dùng trong cơ sở dữ liệu
+                var user = await _context.User.FirstOrDefaultAsync(u => u.Username == usernameClaim);
+                if (user == null)
+                {
+                    return NotFound(new { error = "User not found" });
+                }
+
+                // Trả về thông tin người dùng (chỉ tên người dùng ở đây)
+                return Ok(new { username = user.Username });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
 
         // GET: api/user
         [HttpGet]

@@ -21,7 +21,7 @@ namespace TranNhatTu_2122110250.Services
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName),
+                new Claim(ClaimTypes.Name, user.Username ),
                 new Claim(ClaimTypes.Email, user.Email)
             };
 
