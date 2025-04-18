@@ -313,6 +313,10 @@
       "PackagePath": "staticwebassets\\images\\products\\fl1.png"
     },
     {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\ip13-1.png",
+      "PackagePath": "staticwebassets\\images\\products\\ip13-1.png"
+    },
+    {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\ip13.jpg",
       "PackagePath": "staticwebassets\\images\\products\\ip13.jpg"
     },
@@ -333,6 +337,22 @@
       "PackagePath": "staticwebassets\\images\\products\\op1.png"
     },
     {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\re-1.png",
+      "PackagePath": "staticwebassets\\images\\products\\re-1.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\red-1.png",
+      "PackagePath": "staticwebassets\\images\\products\\red-1.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\red-2.png",
+      "PackagePath": "staticwebassets\\images\\products\\red-2.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\red.png",
+      "PackagePath": "staticwebassets\\images\\products\\red.png"
+    },
+    {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\red1-1.png",
       "PackagePath": "staticwebassets\\images\\products\\red1-1.png"
     },
@@ -341,12 +361,20 @@
       "PackagePath": "staticwebassets\\images\\products\\red1.png"
     },
     {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\redmagic",
+      "PackagePath": "staticwebassets\\images\\products"
+    },
+    {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\ss1-1.png",
       "PackagePath": "staticwebassets\\images\\products\\ss1-1.png"
     },
     {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\ss1.png",
       "PackagePath": "staticwebassets\\images\\products\\ss1.png"
+    },
+    {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\vi-1.png",
+      "PackagePath": "staticwebassets\\images\\products\\vi-1.png"
     },
     {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\js\\home\\script.js",
