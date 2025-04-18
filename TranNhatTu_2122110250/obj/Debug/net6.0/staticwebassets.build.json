@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "oy+XzmvDjdX2qIjAYwnQT8Gj4eNLaardHcVd8CDSUpA=",
+  "Hash": "6iu2SJeS+3FQuazBidxHTXBEZTI+zdcg/aI+Hj0g/yw=",
   "Source": "TranNhatTu_2122110250",
   "BasePath": "_content/TranNhatTu_2122110250",
   "Mode": "Default",
@@ -899,6 +899,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\icons\\flags\\UZ@2x.png"
+    },
+    {
+      "Identity": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\logout.png",
+      "SourceId": "TranNhatTu_2122110250",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\",
+      "BasePath": "_content/TranNhatTu_2122110250",
+      "RelativePath": "images/icons/logout.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\icons\\logout.png"
     },
     {
       "Identity": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\notes.png",

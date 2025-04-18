@@ -54,6 +54,7 @@ namespace TranNhatTu_2122110250.Controllers
 
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("Username", user.Username);
+            HttpContext.Session.SetString("Email", user.Email);
             HttpContext.Session.SetString("Role", user.Role ?? "User");
 
             if (HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") == null)
@@ -61,10 +62,10 @@ namespace TranNhatTu_2122110250.Controllers
                 HttpContext.Session.SetObjectAsJson("Cart", new List<CartItem>());
             }
 
-            if (user.Role == "Admin")
-            {
-                return RedirectToAction("Index", "Home", new { area = "Admin" });
-            }
+            //if (user.Role == "Admin")
+            //{
+            //    return RedirectToAction("Index", "Home", new { area = "Admin" });
+            //}
 
             return RedirectToAction("Index", "Home");
         }

@@ -18,10 +18,12 @@ namespace TranNhatTu_2122110250.Controllers
         public IActionResult Index()
         {
             var products = _context.Products
-                .OrderByDescending(p => p.CreatedBy)
+                .OrderByDescending(p => p.CreatedDate)  // Sắp xếp theo ngày tạo (giả sử bạn có trường CreatedDate kiểu DateTime)
                 .Take(3)
                 .ToList();
 
+
+            var categories = _context.Category.ToList();
             var productRecommended = _context.Products
                 .OrderByDescending(p => p.CreatedBy)
                 .Take(10)
@@ -29,12 +31,13 @@ namespace TranNhatTu_2122110250.Controllers
 
             foreach (var product in productRecommended)
             {
-                var category = _context.Category.FirstOrDefault(c => c.Id == product.CategoryId);
+                var category = categories.FirstOrDefault(c => c.Id == product.CategoryId);
                 if (category != null)
                 {
                     product.Category_name = category.Name;
                 }
             }
+
 
             var model = new HomeViewModel
             {

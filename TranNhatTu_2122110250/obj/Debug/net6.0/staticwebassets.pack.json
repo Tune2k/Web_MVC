@@ -209,6 +209,10 @@
       "PackagePath": "staticwebassets\\images\\icons\\flags\\UZ@2x.png"
     },
     {
+      "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\logout.png",
+      "PackagePath": "staticwebassets\\images\\icons\\logout.png"
+    },
+    {
       "Id": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\notes.png",
       "PackagePath": "staticwebassets\\images\\icons\\notes.png"
     },

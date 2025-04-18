@@ -9,6 +9,8 @@ using TranNhatTu_2122110250.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Information);
+
 // Cấu hình bộ nhớ cho session
 builder.Services.AddHttpContextAccessor(); // Thêm để truy cập vào HttpContext (dùng cho session)
 
@@ -19,6 +21,9 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
+
+    // 👇 Thêm nếu cần debug HTTP (KHÔNG dùng cho production)
+    options.Cookie.SecurePolicy = CookieSecurePolicy.None;
 });
 
 // Đăng ký các dịch vụ UserService và TokenService
@@ -57,7 +62,10 @@ builder.Services.AddControllersWithViews();  // Dùng cả MVC và Web API
 
 // Đăng ký Entity Framework Core với SQL Server
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+     .EnableSensitiveDataLogging()  // Cho phép in dữ liệu
+     .LogTo(Console.WriteLine, LogLevel.Information) // Ghi log query ra console
+    );
 
 // Cấu hình Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -111,6 +119,8 @@ else
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts(); // Sử dụng HSTS trong môi trường sản xuất
 }
+// Cấu hình routing
+app.UseRouting();
 
 // Sử dụng session
 app.UseSession();  // Middleware để sử dụng session
@@ -119,49 +129,69 @@ app.UseSession();  // Middleware để sử dụng session
 app.UseAuthentication();   // Cần phải gọi UseAuthentication trước UseAuthorization
 app.UseAuthorization();
 
-// Cấu hình HTTPS và Static Files
-app.UseHttpsRedirection();
-app.UseStaticFiles();
 
 // Cấu hình routing
-app.Use(async (context, next) =>
-{
-    if (context.Request.Path == "/")
-    {
-        context.Response.Redirect("/Home/Index");
-        return;
-    }
-    await next();
-});
-// Redirect "/" về "/Home/Index"
-app.Use(async (context, next) =>
-{
-    if (context.Request.Path == "/")
-    {
-        context.Response.Redirect("/Home/Index");
-        return;
-    }
-    await next();
-});
+//app.Use(async (context, next) =>
+//{
+//    if (context.Request.Path == "/")
+//    {
+//        context.Response.Redirect("/Home/Index");
+//        return;
+//    }
+//    await next();
+//});
 
-// Middleware chặn người không phải admin truy cập /Admin
 //app.Use(async (context, next) =>
 //{
 //    var path = context.Request.Path.ToString().ToLower();
 //    var role = context.Session.GetString("Role");
 
-//    // Nếu vào /admin mà role khác admin thì redirect về Login
+//    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+//    logger.LogInformation("Đang truy cập: {Path}, ROLE trong session: {Role}", path, role ?? "null");
+
 //    if (path.StartsWith("/admin") && role != "Admin")
 //    {
-//        context.Response.Redirect("/Admin");
+//        context.Response.Redirect("/Account/Login");
 //        return;
 //    }
 
 //    await next();
 //});
 
-// Cấu hình routing
-app.UseRouting();
+app.Use(async (context, next) =>
+{
+    var path = context.Request.Path.Value ?? "";
+    var role = context.Session.GetString("Role");
+
+    // 1. Nếu đúng "/" thì chuyển về trang login user
+    if (path.Equals("/", StringComparison.OrdinalIgnoreCase))
+    {
+        context.Response.Redirect("/Home/Index");
+        return;
+    }
+
+    // 2. Nếu vào /Admin (nhưng không phải login/logout của Admin) 
+    //    mà role != "Admin" thì đá về /Admin/Account/Login
+   
+
+    if (path.StartsWith("/Admin", StringComparison.OrdinalIgnoreCase)
+        && !path.StartsWith("/Admin/Account/Login", StringComparison.OrdinalIgnoreCase)
+        && !path.StartsWith("/Admin/Account/Logout", StringComparison.OrdinalIgnoreCase)
+        && role != "Admin"
+        )
+    {
+        context.Response.Redirect("/Admin/Account/Login");
+        return;
+    }
+    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+    //logger.LogInformation("Đang truy cập: {Path}, ROLE trong session: {Role}", path, role ?? "null");
+    await next();
+});
+
+// Cấu hình HTTPS và Static Files
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
 
 // Đảm bảo route mặc định dẫn tới HomeController và action Index
 app.UseEndpoints(endpoints =>

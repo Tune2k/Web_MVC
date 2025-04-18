@@ -13,7 +13,7 @@ namespace TranNhatTu_2122110250.Model
 
         public string? Model3D { get; set; }
 
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         public string Description { get; set; }
 

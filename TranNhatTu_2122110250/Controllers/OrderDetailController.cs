@@ -24,7 +24,7 @@ namespace TranNhatTu_2122110250.Controllers
         {
             try
             {
-                var orderDetails = await _context.OrderDetail
+                var orderDetails = await _context.OrderDetails
                     .Include(od => od.Product)
                     .Include(od => od.Order)
                     .ToListAsync();
@@ -42,7 +42,7 @@ namespace TranNhatTu_2122110250.Controllers
         [HttpGet("{id}")]
         public IActionResult GetOrderDetailById(int id)
         {
-            var detail = _context.OrderDetail
+            var detail = _context.OrderDetails
                 .Include(od => od.Product)
                 .Include(od => od.Order)
                 .FirstOrDefault(od => od.Id == id);
@@ -59,7 +59,7 @@ namespace TranNhatTu_2122110250.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.OrderDetail.Add(detail);
+                _context.OrderDetails.Add(detail);
                 _context.SaveChanges();
                 return CreatedAtAction(nameof(GetOrderDetailById), new { id = detail.Id }, detail);
             }
@@ -74,7 +74,7 @@ namespace TranNhatTu_2122110250.Controllers
             if (id != detail.Id)
                 return BadRequest();
 
-            _context.OrderDetail.Update(detail);
+            _context.OrderDetails.Update(detail);
             _context.SaveChanges();
             return NoContent();
         }
@@ -83,11 +83,11 @@ namespace TranNhatTu_2122110250.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteOrderDetail(int id)
         {
-            var detail = _context.OrderDetail.FirstOrDefault(od => od.Id == id);
+            var detail = _context.OrderDetails.FirstOrDefault(od => od.Id == id);
             if (detail == null)
                 return NotFound();
 
-            _context.OrderDetail.Remove(detail);
+            _context.OrderDetails.Remove(detail);
             _context.SaveChanges();
             return NoContent();
         }

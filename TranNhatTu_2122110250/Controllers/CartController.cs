@@ -54,10 +54,16 @@ public class CartController : Controller
     [HttpPost]
     public IActionResult AddToCart(int id)
     {
+        foreach (var key in Request.Form.Keys)
+        {
+            Console.WriteLine($"{key} = {Request.Form[key]}");
+        }
+
         var userId = GetUserId();
         if (userId == null)
             return RedirectToAction("Login", "Account");
 
+        // Lấy sản phẩm từ DB
         var product = _context.Products.FirstOrDefault(p => p.Id == id);
         if (product == null || product.Stock <= 0)
         {
@@ -65,45 +71,50 @@ public class CartController : Controller
             return RedirectToAction("Index", "Home");
         }
 
+        // Lấy giỏ hàng của user (nếu có), hoặc tạo mới
         var cart = _context.Carts
             .Include(c => c.Items)
             .FirstOrDefault(c => c.UserId == userId);
 
         if (cart == null)
         {
-            cart = new Cart { UserId = userId.Value };
+            cart = new Cart
+            {
+                UserId = userId.Value,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = DateTime.Now
+            };
             _context.Carts.Add(cart);
-            _context.SaveChanges(); // Lưu để tạo Cart.Id
+            _context.SaveChanges(); // Lưu để có Cart.Id
         }
 
-        var cartItem = _context.CartItems
-            .FirstOrDefault(ci => ci.CartId == cart.Id && ci.ProductId == id);
-
-        if (cartItem != null)
+        // Kiểm tra xem sản phẩm đã có trong giỏ chưa
+        var existingItem = cart.Items.FirstOrDefault(i => i.ProductId == product.Id);
+        if (existingItem != null)
         {
-            if (cartItem.Quantity < product.Stock)
+            if (existingItem.Quantity < product.Stock)
             {
-                cartItem.Quantity++;
+                existingItem.Quantity++;
             }
             else
             {
-                TempData["Message"] = "Đã đạt số lượng tối đa trong kho.";
+                TempData["Message"] = "Số lượng vượt quá tồn kho.";
                 return RedirectToAction("Index", "Cart");
             }
         }
         else
         {
-            cartItem = new CartItem
+            var cartItem = new CartItem
             {
                 CartId = cart.Id,
                 ProductId = product.Id,
                 Name = product.Name,
-                Price = product.Price,
                 Image = product.Image,
+                Price = product.Price,
                 Quantity = 1,
                 Stock = product.Stock
             };
-            _context.CartItems.Add(cartItem); // Quan trọng: thêm trực tiếp vào DbSet
+            _context.CartItems.Add(cartItem);
         }
 
         cart.UpdatedAt = DateTime.Now;
@@ -112,6 +123,7 @@ public class CartController : Controller
         TempData["Message"] = $"{product.Name} đã được thêm vào giỏ hàng.";
         return RedirectToAction("Index", "Cart");
     }
+
 
 
 
@@ -141,6 +153,18 @@ public class CartController : Controller
     [HttpPost]
     public IActionResult Update(List<CartItem> cartItems)
     {
+        if (cartItems == null || !cartItems.Any())
+        {
+            TempData["Message"] = "Không nhận được dữ liệu từ form!";
+            return RedirectToAction("Index");
+        }
+
+        // In cartItems ra để kiểm tra
+        foreach (var item in cartItems)
+        {
+            Console.WriteLine($"ProductId: {item.ProductId}, Quantity: {item.Quantity}");
+        }
+
         var userId = GetUserId();
         if (userId == null)
         {
@@ -151,6 +175,7 @@ public class CartController : Controller
             .Include(c => c.Items)
             .FirstOrDefault(c => c.UserId == userId);
 
+        // Kiểm tra cartItems và update
         foreach (var item in cartItems)
         {
             var existingItem = cart.Items.FirstOrDefault(ci => ci.ProductId == item.ProductId);
@@ -160,20 +185,65 @@ public class CartController : Controller
             {
                 if (item.Quantity <= 0)
                 {
-                    cart.Items.Remove(existingItem);
+                    cart.Items.Remove(existingItem);  // Xóa sản phẩm khỏi giỏ hàng nếu số lượng <= 0
                 }
                 else if (product.Stock >= item.Quantity)
                 {
-                    existingItem.Quantity = item.Quantity;
+                    existingItem.Quantity = item.Quantity;  // Cập nhật số lượng
+                    _context.Entry(existingItem).State = EntityState.Modified;  // Đặt trạng thái là Modified
                 }
                 else
                 {
-                    TempData["Message"] = $"Không đủ hàng cho {product.Name}";
+                    TempData["Message"] = $"Không đủ hàng cho {product.Name}";  // Thông báo nếu không đủ hàng
                 }
             }
         }
 
-        _context.SaveChanges();
+        try
+        {
+            _context.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+            TempData["Message"] = "Có lỗi xảy ra khi cập nhật giỏ hàng!";
+        }
+
         return RedirectToAction("Index");
     }
+
+
+
+
+    //[HttpPost]
+    //public IActionResult Update(List<CartItem> cartItems)
+    //{
+    //    var userId = GetUserId(); // hoặc Session
+    //    if (userId == null)
+    //    {
+    //        return RedirectToAction("Login", "Account");
+    //    }
+
+    //    foreach (var updatedItem in cartItems)
+    //    {
+    //        var existingItem = _context.CartItems
+    //            .FirstOrDefault(c => c.Id == userId && c.ProductId == updatedItem.ProductId);
+
+    //        if (existingItem != null)
+    //        {
+    //            // Đảm bảo không vượt quá số lượng tồn kho
+    //            var product = _context.Products.Find(updatedItem.ProductId);
+    //            if (product != null)
+    //            {
+    //                existingItem.Quantity = Math.Min(updatedItem.Quantity, product.Stock);
+    //            }
+    //        }
+    //    }
+
+    //    _context.SaveChanges();
+
+    //    TempData["Message"] = "Cập nhật giỏ hàng thành công!";
+    //    return RedirectToAction("Index");
+    //}
+
 }

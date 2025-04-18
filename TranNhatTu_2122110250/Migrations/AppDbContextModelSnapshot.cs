@@ -91,8 +91,8 @@ namespace TranNhatTu_2122110250.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -148,12 +148,17 @@ namespace TranNhatTu_2122110250.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("float");
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Order");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("TranNhatTu_2122110250.Model.OrderDetail", b =>
@@ -167,8 +172,8 @@ namespace TranNhatTu_2122110250.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -182,7 +187,7 @@ namespace TranNhatTu_2122110250.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetail");
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("TranNhatTu_2122110250.Model.Product", b =>
@@ -226,8 +231,8 @@ namespace TranNhatTu_2122110250.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
@@ -300,10 +305,21 @@ namespace TranNhatTu_2122110250.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("TranNhatTu_2122110250.Model.Order", b =>
+                {
+                    b.HasOne("TranNhatTu_2122110250.Model.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("TranNhatTu_2122110250.Model.OrderDetail", b =>
                 {
                     b.HasOne("TranNhatTu_2122110250.Model.Order", "Order")
-                        .WithMany("OrderDetails")
+                        .WithMany("OrderDetail")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -311,7 +327,7 @@ namespace TranNhatTu_2122110250.Migrations
                     b.HasOne("TranNhatTu_2122110250.Model.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Order");
@@ -342,13 +358,15 @@ namespace TranNhatTu_2122110250.Migrations
 
             modelBuilder.Entity("TranNhatTu_2122110250.Model.Order", b =>
                 {
-                    b.Navigation("OrderDetails");
+                    b.Navigation("OrderDetail");
                 });
 
             modelBuilder.Entity("TranNhatTu_2122110250.Model.User", b =>
                 {
                     b.Navigation("Cart")
                         .IsRequired();
+
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

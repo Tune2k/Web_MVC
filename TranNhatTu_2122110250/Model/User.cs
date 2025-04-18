@@ -19,6 +19,10 @@ namespace TranNhatTu_2122110250.Model
         public string Role { get; set; }
 
         public Cart Cart { get; set; }
+
+        // ✅ Quan hệ 1-n với Order
+        public virtual List<Order> Orders { get; set; } = new List<Order>();
+
     }
 
 }

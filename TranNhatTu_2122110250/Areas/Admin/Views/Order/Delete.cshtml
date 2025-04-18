@@ -1,0 +1,75 @@
+﻿@model TranNhatTu_2122110250.Model.Order
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+    ViewData["Title"] = "Xóa đơn hàng";
+}
+
+@section Styles {
+    <link href="~/css/admin/productForm.css" rel="stylesheet" />
+}
+
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title text-danger">⚠️ Xác nhận xóa đơn hàng</h2>
+
+        <form asp-action="Delete" method="post" class="product-form">
+            @Html.AntiForgeryToken() <!-- Thêm dòng này -->
+            <input type="hidden" name="id" value="@Model.Id" />
+
+            <div class="form-group">
+                <p>Bạn có chắc chắn muốn xóa đơn hàng này?</p>
+                <ul class="product-delete-info">
+                    <li><strong>Mã đơn hàng:</strong> @Model.Id</li>
+                    <li><strong>Khách hàng:</strong> @Model.CustomerName</li>
+                    <li><strong>Email:</strong> @Model.CustomerEmail</li>
+                    <li><strong>Ngày đặt hàng:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</li>
+                    <li><strong>Tổng tiền:</strong> @Model.TotalPrice.ToString("N0") VNĐ</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <h4>📦 Danh sách sản phẩm trong đơn hàng</h4>
+                @if (Model.OrderDetail != null && Model.OrderDetail.Any())
+                {
+                    <table class="order-details-table">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderDetail)
+                            {
+                                <tr>
+                                    <td>@item.Product?.Name</td>
+                                    <td>@item.Price.ToString("N0") VNĐ</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@((item.Price * item.Quantity).ToString("N0")) VNĐ</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>Không có sản phẩm nào trong đơn hàng.</p>
+                }
+            </div>
+
+            <div class="form-actions mt-3">
+                <button type="submit" class="btn btn-danger">❌ Xóa đơn hàng</button>
+                <a href="/Admin/Order/Index" class="btn btn-secondary">⬅ Quay lại</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Có thể thêm xử lý xác nhận bằng JS nếu muốn
+    </script>
+}

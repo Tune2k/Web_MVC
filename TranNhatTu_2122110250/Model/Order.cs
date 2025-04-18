@@ -9,10 +9,12 @@ namespace TranNhatTu_2122110250.Model
 		public DateTime OrderDate { get; set; } = DateTime.Now; // Ngày đặt hàng
 		public string CustomerName { get; set; }  // Tên khách hàng
 		public string CustomerEmail { get; set; } // Email khách hàng
-		public double TotalPrice { get; set; }  // Tổng giá trị đơn hàng
-
-		// Danh sách sản phẩm trong đơn hàng (Mối quan hệ N-N với Product)
-		public List<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+		public decimal TotalPrice { get; set; }  // Tổng giá trị đơn hàng
+                                                 // ✅ Thêm khóa ngoại UserId
+        public int UserId { get; set; }          // Khóa ngoại
+        public User User { get; set; }   // Navigation property
+        // Danh sách sản phẩm trong đơn hàng (Mối quan hệ N-N với Product)
+        public  List<OrderDetail> OrderDetail { get; set; } = new List<OrderDetail>();
 
 	}
 }

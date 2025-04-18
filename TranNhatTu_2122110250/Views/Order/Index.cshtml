@@ -1,0 +1,107 @@
+﻿@model TranNhatTu_2122110250.Model.OrderViewModel
+
+@{
+    var username = ViewBag.Username as string ?? "Chưa đăng nhập";
+    var email = ViewBag.Email as string ?? "Chưa có email";
+}
+<!-- Place this before the closing </body> tag or at the end of the Razor file -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("orderForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+            const cartItems = [];
+
+            document.querySelectorAll("input[name^='CartItems']").forEach(input => {
+                const match = input.name.match(/CartItems\[(\d+)\]\.(\w+)/);
+                if (match) {
+                    const [_, index, key] = match;
+                    if (!cartItems[index]) cartItems[index] = {};
+                    cartItems[index][key] = input.value;
+                }
+            });
+
+            const payload = {
+                customerName: form.querySelector("input[name='CustomerName']").value,
+                customerEmail: form.querySelector("input[name='CustomerEmail']").value,
+                totalPrice: parseFloat(form.querySelector("input[name='TotalPrice']").value),
+                cartItems: cartItems.map(i => ({
+                    productId: parseInt(i.ProductId),
+                    name: i.Name,
+                    quantity: parseInt(i.Quantity),
+                    price: parseFloat(i.Price)
+                }))
+            };
+
+            fetch("/Order/PlaceOrderAjax", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "RequestVerificationToken": document.querySelector("input[name='__RequestVerificationToken']").value
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message);
+                    if (data.success) {
+                        window.location.href = "/Order/Success";
+                    }
+                })
+                .catch(err => {
+                    console.error("AJAX Error", err);
+                    alert("Đã có lỗi xảy ra!");
+                });
+        });
+    });
+</script>
+
+
+<h2>Thông tin thanh toán</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-warning">@TempData["Message"]</div>
+}
+
+<form id="orderForm">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label>Họ và tên</label>
+        <input type="text" class="form-control" value="@username" readonly />
+        <input type="hidden" name="CustomerName" value="@username" />
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" value="@email" readonly />
+        <input type="hidden" name="CustomerEmail" value="@email" />
+    </div>
+
+    <h4>Đơn hàng</h4>
+    <ul>
+        @for (int i = 0; i < Model.CartItems.Count; i++)
+        {
+            var item = Model.CartItems[i];
+            <li>@item.Name - @item.Quantity x @item.Price.ToString("N0") VNĐ</li>
+            <!-- Hidden fields để binding CartItems -->
+            <input type="hidden" name="CartItems[@i].ProductId" value="@item.ProductId" />
+            <input type="hidden" name="CartItems[@i].Name" value="@item.Name" />
+            <input type="hidden" name="CartItems[@i].Quantity" value="@item.Quantity" />
+            <input type="hidden" name="CartItems[@i].Price" value="@item.Price" />
+        }
+    </ul>
+
+    <h5>
+        Tổng tiền: @Model.TotalPrice.ToString("N0", new System.Globalization.CultureInfo("vi-VN")) VNĐ
+    </h5>
+
+    <input type="hidden" name="TotalPrice" value="@Model.TotalPrice" />
+
+    <button id="submitOrderBtn" type="submit" class="btn btn-success">Xác nhận đặt hàng</button>
+
+
+</form>
+

@@ -272,11 +272,27 @@ body {
 	.search-and-user .admin-profile {
 		display: flex;
 		align-items: center;
+		gap: 10px; /* khoảng cách giữa greeting và logout */
 	}
 
 		.search-and-user .admin-profile .greeting {
-			margin: 0 10px 0 20px;
+			white-space: nowrap;
+			font-weight: bold;
+			color: var(--page-content-txtColor);
 		}
+
+		.search-and-user .admin-profile .logout-btn {
+			background-color: var(--red);
+			color: white;
+			padding: 6px 12px;
+			border-radius: var(--border-radius);
+			transition: background-color 0.3s;
+			font-size: 0.85rem;
+		}
+
+			.search-and-user .admin-profile .logout-btn:hover {
+				background-color: darkred;
+			}
 
 		.search-and-user .admin-profile svg {
 			width: 30px;

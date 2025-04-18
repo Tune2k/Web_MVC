@@ -1,0 +1,64 @@
+﻿@model TranNhatTu_2122110250.Model.Order
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/admin/proStyle.css" rel="stylesheet" />
+}
+
+<div class="product-container">
+    <div class="product-header">
+        <h2>Chi tiết đơn hàng</h2>
+        <a href="/Admin/Order" class="btn btn-add">← Quay lại</a>
+    </div>
+
+    <table class="product-table">
+        <tbody>
+            <tr>
+                <th>ID đơn hàng</th>
+                <td>@Model.Id</td>
+            </tr>
+            <tr>
+                <th>Khách hàng</th>
+                <td>@Model.CustomerName</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>@Model.CustomerEmail</td>
+            </tr>
+            <tr>
+                <th>Ngày đặt</th>
+                <td>@Model.OrderDate.ToString("dd/MM/yyyy HH:mm")</td>
+            </tr>
+            <tr>
+                <th>Tổng tiền</th>
+                <td>@Model.TotalPrice.ToString("N0") VNĐ</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 style="margin-top: 30px;">Sản phẩm trong đơn hàng</h3>
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetail)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Price.ToString("N0") VNĐ</td>
+                    <td>@item.Quantity</td>
+                    <td>@((item.Quantity * item.Price).ToString("N0")) VNĐ</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

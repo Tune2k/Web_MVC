@@ -71,13 +71,17 @@
                 }
             </ul>
 
-<form asp-controller="Cart" asp-action="AddToCart" method="post">
+@* <form asp-controller="Cart" asp-action="AddToCart" method="post">
     <input type="hidden" name="id" value="@Model.Id" />
     <button type="submit" class="btn btn-outline-primary btn-lg btn-block btn-custom-color"
     @(Model.Stock == 0 ? "disabled" : "")>
         Thêm vào giỏ hàng
     </button>
-</form>
+</form> *@
+            <form action="/Cart/AddToCart" method="post">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
+            </form>
 
         </div>
     </div>

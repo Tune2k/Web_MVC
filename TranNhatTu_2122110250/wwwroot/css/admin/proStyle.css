@@ -197,7 +197,7 @@
 
 
 
-
+/*Style Users*/
 
 
 .user-container {
@@ -275,3 +275,34 @@
 		text-overflow: ellipsis; /* Thêm dấu ba chấm "..." nếu nội dung tràn */
 		white-space: nowrap; /* Ngăn không cho văn bản xuống dòng */
 	}
+
+
+
+/*Style Order*/
+.order-status {
+	display: inline-block;
+	padding: 4px 10px;
+	border-radius: 5px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #fff;
+	background-color: #6c757d; /* mặc định */
+}
+
+	.order-status.pending {
+		background-color: #ffc107; /* vàng */
+	}
+
+	.order-status.completed {
+		background-color: #28a745; /* xanh lá */
+	}
+
+	.order-status.cancelled {
+		background-color: #dc3545; /* đỏ */
+	}
+
+/*Style OrderDetail*/
+.product-table tbody tr:hover {
+	background-color: #f9f9f9;
+	transition: background-color 0.3s ease;
+}
