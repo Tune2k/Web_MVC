@@ -100,27 +100,23 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// Cấu hình pipeline
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-
-    // KHÔNG tự động hiện Swagger, chỉ hiện khi gõ /swagger
-    // (vẫn giữ lại Swagger cho test API thủ công)
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-        c.RoutePrefix = "swagger";
-    });
-}
-else
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts(); // Sử dụng HSTS trong môi trường sản xuất
-}
 // Cấu hình routing
 app.UseRouting();
+
+// 👇 Thêm đoạn redirect ngay đây
+app.Use(async (context, next) =>
+{
+    var path = context.Request.Path.Value ?? "";
+
+    // Nếu đang ở "/", chuyển hướng đến /Home/Index
+    if (path == "/")
+    {
+        context.Response.Redirect("/Home/Index");
+        return;
+    }
+
+    await next();
+});
 
 // Sử dụng session
 app.UseSession();  // Middleware để sử dụng session

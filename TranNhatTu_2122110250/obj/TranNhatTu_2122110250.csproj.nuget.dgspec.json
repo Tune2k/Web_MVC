@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250.csproj": {}
+    "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250.csproj": {}
   },
   "projects": {
-    "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250.csproj": {
+    "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250.csproj",
+        "projectUniqueName": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250.csproj",
         "projectName": "TranNhatTu_2122110250",
-        "projectPath": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250.csproj",
+        "projectPath": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250.csproj",
         "packagesPath": "C:\\Users\\tune2\\.nuget\\packages\\",
-        "outputPath": "D:\\ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\obj\\",
+        "outputPath": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

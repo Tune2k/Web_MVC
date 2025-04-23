@@ -25,7 +25,7 @@ namespace TranNhatTu_2122110250.Controllers
 
             var categories = _context.Category.ToList();
             var productRecommended = _context.Products
-                .OrderByDescending(p => p.CreatedBy)
+                .OrderByDescending(p => p.Category)
                 .Take(10)
                 .ToList();
 

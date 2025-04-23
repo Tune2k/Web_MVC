@@ -141,19 +141,7 @@
                 <div class="card">
                     <div class="overflow">
                         <div class="model">
-                            @if (!string.IsNullOrWhiteSpace(product.Model3D))
-                            {
-                                <model-viewer src="@(Url.Content("~/models/" + product.Model3D))"
-                                              shadow-intensity="0.4"
-                                              auto-rotate
-                                              camera-controls
-                                              style="width: 100%; height: 250px;">
-                                </model-viewer>
-                            }
-                            else
-                            {
                                 <img src="~/images/products/@product.Image" alt="@product.Name" style="width: 100%; height: auto;" />
-                            }
                         </div>
                     </div>
                     <div class="glass">

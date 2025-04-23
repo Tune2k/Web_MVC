@@ -48,59 +48,61 @@ namespace TranNhatTu_2122110250.Areas.Admin.Controllers
 
         // Hiển thị trang chỉnh sửa người dùng
         // GET: /Admin/User/Edit/1
+        // GET: /Admin/User/Edit/1
+        // GET: Admin/User/Edit/5
         public IActionResult Edit(int id)
         {
             var user = _context.User.Find(id);
             if (user == null)
             {
-                TempData["ErrorMessage"] = "Người dùng không tồn tại.";
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
 
-            Console.WriteLine($"DEBUG: Id = {user.Id}, Name = {user.Username}, Email = {user.Email}");
-            return View(user); // Trả về view với dữ liệu người dùng
+            // CHUYỂN SANG VIEWMODEL
+            var viewModel = new UserEditViewModel
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                Role = user.Role
+
+                // Không đưa Password vào nếu không cần sửa
+            };
+
+            return View(viewModel); // ✅ View đang dùng UserEditViewModel
         }
+
 
         // Xử lý chỉnh sửa người dùng
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, User user)
+        public IActionResult Edit(UserEditViewModel model)
         {
-            if (id != user.Id)
-            {
-                TempData["ErrorMessage"] = "ID người dùng không khớp.";
-                return RedirectToAction(nameof(Index));
-            }
-
             if (ModelState.IsValid)
             {
-                var existingUser = _context.User.FirstOrDefault(u => u.Id == id);
-                if (existingUser == null)
+                var user = _context.User.Find(model.Id);
+                if (user == null)
                 {
-                    TempData["ErrorMessage"] = "Không tìm thấy người dùng.";
-                    return RedirectToAction(nameof(Index));
+                    return NotFound();
                 }
+                user.Username = model.Username;
+                user.Email = model.Email;
+                user.Role = model.Role;
+                // Không thay đổi Password nếu không nhập
 
-                existingUser.Username = user.Username;
-                existingUser.Email = user.Email;
-                existingUser.Password = user.Password;
+                _context.Update(user);
+                _context.SaveChanges();
 
-                try
-                {
-                    _context.SaveChanges();
-                    TempData["SuccessMessage"] = "Người dùng đã được cập nhật thành công!";
-                    return RedirectToAction(nameof(Index));
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    TempData["ErrorMessage"] = "Có lỗi xảy ra khi cập nhật người dùng.";
-                    return RedirectToAction(nameof(Index));
-                }
+                return RedirectToAction("Index");
             }
 
-            TempData["ErrorMessage"] = "Thông tin người dùng không hợp lệ.";
-            return View(user);
+            return View(model); // ✅ Trả lại đúng ViewModel nếu có lỗi
         }
+
+
+
+
+
 
 
 
@@ -128,15 +130,38 @@ namespace TranNhatTu_2122110250.Areas.Admin.Controllers
             var user = _context.User.Find(id); // Tìm người dùng theo ID
             if (user != null)
             {
+                // Xóa tất cả cart liên quan tới user
+                var carts = _context.Carts.Where(c => c.UserId == id).ToList();
+                _context.Carts.RemoveRange(carts);
+
                 _context.User.Remove(user); // Xóa người dùng
                 _context.SaveChanges(); // Lưu thay đổi vào cơ sở dữ liệu
-                TempData["SuccessMessage"] = "Người dùng đã được xóa thành công!"; // Thêm thông báo thành công
+
+                TempData["SuccessMessage"] = "Người dùng và giỏ hàng đã được xóa thành công!";
             }
             else
             {
-                TempData["ErrorMessage"] = "Có lỗi xảy ra khi xóa người dùng."; // Thêm thông báo lỗi nếu không xóa được
+                TempData["ErrorMessage"] = "Không tìm thấy người dùng để xóa.";
             }
-            return RedirectToAction(nameof(Index)); // Quay lại danh sách người dùng sau khi xóa
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateRole(int id, string role)
+        {
+            var user = await _context.User.FindAsync(id); // Đảm bảo là DbSet tên "Users"
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Role = role;
+            _context.Update(user);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
         }
     }
 }

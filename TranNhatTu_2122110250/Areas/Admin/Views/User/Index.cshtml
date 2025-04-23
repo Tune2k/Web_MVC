@@ -14,11 +14,14 @@
         @* <a href="/Admin/User/Create" class="btn-add">+ Thêm người dùng</a> *@
     </div>
     <div style="overflow-x: auto;">
+        @Html.AntiForgeryToken()
+
         <table class="user-table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Tên</th>
+                    <th>Quyền</th>
                     <th>Email</th>
                     <th>Mật khẩu</th> <!-- Cột mật khẩu -->
                     <th>Hành động</th>
@@ -30,11 +33,20 @@
                     <tr>
                         <td>@item.Id</td>
                         <td>@item.Username</td>
+                        <!-- Form chỉnh sửa Role -->
+                        @* <td>
+                    <select name="role" class="form-select form-select-sm" style="min-width: 120px;">
+                    <option value="User" selected="@(item.Role == "User" ? "selected" : null)">User</option>
+                    <option value="Admin" selected="@(item.Role == "Admin" ? "selected" : null)">Admin</option>
+                    </select>
+                    </td> *@
+                        <td>@item.Role</td>
                         <td>@item.Email</td>
                         <td>@item.Password</td> <!-- Hiển thị mật khẩu -->
                         <td>
-                            @* <a href="/Admin/User/Edit/@item.Id" class="btn btn-edit">Sửa</a> *@
-                            <a href="/Admin/User/Delete/@item.Id" class="btn btn-delete" >Xóa</a>
+                            @* <button type="submit" class="btn btn-sm btn-primary me-1">Lưu</button> *@
+                            <a href="/Admin/User/Edit/@item.Id" class="btn btn-edit">Sửa</a>
+                            <a href="/Admin/User/Delete/@item.Id" class="btn btn-delete">Xóa</a>
                         </td>
                     </tr>
                 }

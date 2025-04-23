@@ -7,43 +7,43 @@
 }
 
 @model TranNhatTu_2122110250.Areas.Admin.ViewModels.ProductIndexViewModel
-    <div class="product-container">
-        <div class="product-header">
-            <h2>📦 Danh sách sản phẩm</h2>
-            <a href="/Admin/Product/Create" class="btn-add">+ Thêm sản phẩm</a>
-        </div>
-        <div style="overflow-x: auto;">
-            <table class="product-table">
-                <thead>
-                    <tr>
-                        <th>Ảnh</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Danh mục</th>
-                        <th>Mô tả</th>
-                        <th>Giá</th>
-                        <th>Tồn kho</th>
-                        <th>Hành động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Products)
-                    {
-                        <tr>
-                            <td>
-                                <img src="~/images/products/@item.Image" alt="Ảnh @item.Name" style="width: 80px; height: auto;" />
-                            </td>
-                            <td>@item.Name</td>
-                            <td>@item.Category_name</td> <!-- Đây sẽ hiển thị tên danh mục -->                            
-                            <td class="description-cell">@item.Description</td>
-                            <td>@String.Format("{0:N0} đ", item.Price)</td>
-                            <td>@item.Stock</td>
-                            <td>
-                                <a href="/Admin/Product/Edit/@item.Id" class="btn btn-edit">Sửa</a>
-                                <a href="/Admin/Product/Delete/@item.Id" class="btn btn-delete">Xóa</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+<div class="product-container">
+    <div class="product-header">
+        <h2>📦 Danh sách sản phẩm</h2>
+        <a href="/Admin/Product/Create" class="btn-add">+ Thêm sản phẩm</a>
     </div>
+    <div style="overflow-x: auto;">
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Danh mục</th>
+                    <th>Mô tả</th>
+                    <th>Giá</th>
+                    <th>Tồn kho</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Products)
+                {
+                    <tr>
+                        <td>
+                            <img src="~/images/products/@item.Image" alt="Ảnh @item.Name" style="width: 80px; height: auto;" />
+                        </td>
+                        <td>@item.Name</td>
+                        <td>@item.Category?.Name</td>
+                        <td class="description-cell">@item.Description</td>
+                        <td>@String.Format("{0:N0} đ", item.Price)</td>
+                        <td>@item.Stock</td>
+                        <td>
+                            <a href="/Admin/Product/Edit/@item.Id" class="btn btn-edit">Sửa</a>
+                            <a href="/Admin/Product/Delete/@item.Id" class="btn btn-delete">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

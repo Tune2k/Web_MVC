@@ -31,28 +31,18 @@
             }
         });
     </script>
-    <script type="text/javascript">
-        window.onload = function () {
-            var categories = @Html.Raw(Json.Serialize(Model.Categories));  // Chuyển danh sách Categories sang JSON và in ra console
-
-            console.log("Danh mục đã tải:", categories);
-
-            // Kiểm tra xem categories có chứa các mục không
-            if (categories.length === 0) {
-                console.log("Không có danh mục nào.");
-            } else {
-                categories.forEach(function (category) {
-                    console.log("Category ID: " + category.value + ", Category Name: " + category.text);
-                });
-            }
-        }
-    </script>
-
 }
 
 <div class="form-wrapper">
     <div class="form-card">
         <h2 class="form-title">➕ Thêm sản phẩm mới</h2>
+        @if (!string.IsNullOrEmpty(Model.CategoryLoadError))
+        {
+            <div class="alert alert-danger">
+                @Model.CategoryLoadError
+            </div>
+        }
+
 
         <form asp-action="Create" method="post" enctype="multipart/form-data" class="product-form">
             <div class="form-group">
@@ -69,39 +59,33 @@
 
             <div class="form-group">
                 <label asp-for="Product.Description">Mô tả sản phẩm</label>
-                <textarea asp-for="Product.Description" class="form-control" rows="4" placeholder="Mô tả chi tiết..."></textarea>
+                <textarea asp-for="Product.Description" class="form-control" rows="4"></textarea>
                 <span asp-validation-for="Product.Description" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Product.Stock">Tồn kho</label>
-                <input asp-for="Product.Stock" class="form-control" type="number" min="0" placeholder="Số lượng tồn" />
+                <input asp-for="Product.Stock" class="form-control" type="number" min="0" />
                 <span asp-validation-for="Product.Stock" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Product.Model3D">Model 3D (tùy chọn)</label>
-                <input asp-for="Product.Model3D" class="form-control" placeholder="Bỏ trống nếu không có" />
-                <span asp-validation-for="Product.Model3D" class="text-danger"></span>
-            </div>
-
-            <!-- CartCount có thể được ẩn nếu mặc định là 0 -->
-            <input type="hidden" asp-for="Product.CartCount" value="0" />
-
-            <div class="form-group">
                 <label asp-for="Product.CategoryId">Danh mục</label>
-                <select asp-for="Product.CategoryId" asp-items="Model.Categories" class="form-control">
-                    <option value="">-- Chọn danh mục --</option>
+                <select asp-for="Product.CategoryId" class="form-control">
+                    @foreach (var item in ViewBag.ListCategory as List<SelectListItem>)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
                 </select>
-                <span asp-validation-for="Product.Category_id" class="text-danger"></span>
+                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
             </div>
+
+
 
             <div class="form-group">
                 <label>Ảnh sản phẩm</label>
-                <div class="image-preview mt-2">
-                    <input type="file" id="imageFile" name="imageFile" class="form-control-file" />                
-                    <img id="previewImage" style="display: none; max-width: 200px;" />
-                </div>
+                <input type="file" id="imageFile" name="ImageUpload" class="form-control-file" />
+                <img id="previewImage" style="display: none; max-width: 200px;" />
             </div>
 
             <div class="form-actions">
@@ -111,4 +95,3 @@
         </form>
     </div>
 </div>
-
