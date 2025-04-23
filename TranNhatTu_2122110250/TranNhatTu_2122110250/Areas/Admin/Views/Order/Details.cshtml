@@ -1,0 +1,153 @@
+﻿@model PhamTranXuanTan_2122110248.Models.OrderDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /* Chỉnh sửa cho tiêu đề */
+    h2 {
+        text-align: center;
+        color: #2C3E50;
+        font-family: Arial, sans-serif;
+        font-size: 2em;
+    }
+
+    h4 {
+        color: #34495E;
+        font-family: Arial, sans-serif;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    /* Styling cho phần thông tin đơn hàng */
+    .dl-horizontal dt {
+        font-weight: bold;
+        color: #2C3E50;
+        padding-right: 20px;
+        width: 150px;
+    }
+
+    .dl-horizontal dd {
+        color: #7F8C8D;
+        padding-bottom: 10px;
+    }
+
+    .dl-horizontal {
+        background-color: #ECF0F1;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    /* Chỉnh sửa bảng hiển thị chi tiết đơn hàng */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+    }
+
+        .table th, .table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #BDC3C7;
+        }
+
+        .table th {
+            background-color: #3498DB;
+            color: white;
+        }
+
+        .table td {
+            color: #2C3E50;
+        }
+
+    /* Chỉnh sửa các liên kết */
+    p a {
+        color: #3498DB;
+        text-decoration: none;
+        font-size: 1.2em;
+    }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+    /* Tạo một viền cho phần thông tin đơn hàng */
+    .div-info {
+        border: 1px solid #BDC3C7;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+</style>
+
+<h2>Đơn hàng </h2>
+
+<div class="div-info">
+    <h4>Thông tin đơn hàng</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.user_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.user_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.created_at)
+        </dd>
+    </dl>
+</div>
+
+<h4>Sản phẩm đơn hàng</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>số lượng</th>
+            <th>giá</th>
+            <th>Tổng giá</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderDetails)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>
+                <td>@item.TotalPrice</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Order.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
