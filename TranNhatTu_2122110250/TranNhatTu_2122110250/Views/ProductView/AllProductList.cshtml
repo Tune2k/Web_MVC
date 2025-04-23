@@ -1,0 +1,90 @@
+﻿@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<TranNhatTu_2122110250.Model.Product>
+
+@{
+    ViewData["Title"] = "Tất cả sản phẩm";
+    var totalItems = ViewBag.TotalItems ?? 0;
+    var categoryId = ViewBag.CategoryId ?? 0;
+}
+
+<section class="section-content padding-y">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar -->
+            <aside class="col-md-2">
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-bs-toggle="collapse" data-bs-target="#collapse_1">Danh mục</a>
+                    </h6>
+                    <div class="filter-content collapse show" id="collapse_1">
+                        <div class="inner">
+                            <ul class="list-menu">
+                                <li>
+                                    <!-- Liên kết tới "Tất cả sản phẩm" -->
+                                    <a href="@Url.Action("AllProductList", "ProductView")">Tất cả sản phẩm</a>
+                                </li>
+                                @foreach (var category in ViewBag.Categories)
+                                {
+                                    <li>
+                                        <a href="@Url.Action("AllProductList", "ProductView", new { categoryId = category.Id })">@category.Name</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </aside>
+
+            <!-- Product List -->
+            <main class="col-md-10">
+                <header class="mb-3">
+                    <div class="form-inline d-flex justify-content-between">
+                        <strong>Có @totalItems sản phẩm</strong>
+                        <div class="btn-group">
+                            <a href="@Url.Action("AllProductGrid", new { categoryId = categoryId })" class="btn btn-light"><i class="fa fa-th"></i></a>
+                            <a href="@Url.Action("AllProductList", new { categoryId = categoryId })" class="btn btn-light active"><i class="fa fa-bars"></i></a>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="list-group">
+                    @foreach (var product in Model)
+                    {
+                        <div class="list-group-item">
+                            <div class="d-flex">
+                                <a href="@Url.Action("Detail", "ProductView", new { id = product.Id })" class="img-wrap">
+                                    <img src="~/images/products/@product.Image" class="img-thumbnail" alt="@product.Name" style="width: 100px; height: 100px;">
+                                </a>
+                                <div class="ms-3">
+                                    <h5 class="list-group-item-heading">@product.Name</h5>
+                                    <p class="text-muted">@product.Description?.Substring(0, Math.Min(60, product.Description.Length))...</p>
+                                    <div class="mt-2">
+                                        <span class="h6 text-danger">@product.Price.ToString("N0") VND</span>
+                                    </div>
+                                    <div class="mt-2">
+                                        <a href="@Url.Action("Detail", "ProductView", new { id = product.Id })" class="btn btn-outline-primary btn-sm">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Trang hiện tại và tổng số trang -->
+                <div class="text-center">
+                    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                </div>
+
+                <!-- Phân trang -->
+                <div class="d-flex justify-content-center">
+                    @Html.PagedListPager(Model, page => Url.Action("AllProductList", "ProductView", new { categoryId = ViewBag.CategoryId, page }),
+                    new PagedListRenderOptions
+                    {
+                    LiElementClasses = new[] { "page-item" },
+                    PageClasses = new[] { "page-link" }
+                    })
+                </div>
+            </main>
+        </div>
+    </div>
+</section>

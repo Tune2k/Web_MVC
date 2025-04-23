@@ -1,17 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace PhamTranXuanTan_2122110248.Areas.Admin.Controllers
+namespace TranNhatTu_2122110250.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class HomeController : Controller
     {
-        // GET: Admin/Home
-        public ActionResult Index()
+        public IActionResult Index()
         {
+            var role = HttpContext.Session.GetString("Role");
+
+            // 👇 Debug thử ra console
+            Console.WriteLine("ROLE trong session là: " + role);
+
+            if (string.IsNullOrEmpty(role) || role != "Admin")
+            {
+                TempData["LoginError"] = "Bạn không có quyền truy cập trang Admin.";
+                //return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
+
     }
 }

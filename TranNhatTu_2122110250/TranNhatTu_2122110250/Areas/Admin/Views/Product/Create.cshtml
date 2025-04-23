@@ -1,88 +1,97 @@
-﻿@model PhamTranXuanTan_2122110248.Context.product
+﻿@model TranNhatTu_2122110250.ViewModels.ProductCreateViewModel
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
 }
-<script src="~/Scripts/ckeditor/ckeditor.js"></script>
-<h2>Tạo mới sản phẩm</h2>
 
-@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+@section Styles {
+    <link href="~/css/admin/productForm.css" rel="stylesheet" />
+}
 
-    <div class="form-horizontal">
-        <h4>sản phẩm</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+@section Scripts {
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.getElementById('previewImage');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputFile = document.getElementById('imageFile');
+            if (inputFile) {
+                inputFile.addEventListener('change', function () {
+                    previewImage(this);
+                });
+            }
+        });
+    </script>
+}
+
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title">➕ Thêm sản phẩm mới</h2>
+        @if (!string.IsNullOrEmpty(Model.CategoryLoadError))
+        {
+            <div class="alert alert-danger">
+                @Model.CategoryLoadError
             </div>
-        </div>
+        }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.description, new { htmlAttributes = new { @class = "form-control", @id = "description" } })
-                <script type="text/javascript" lang="javascript">
-                    CKEDITOR.replace("description")
 
-                </script>
-                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+        <form asp-action="Create" method="post" enctype="multipart/form-data" class="product-form">
+            <div class="form-group">
+                <label asp-for="Product.Name">Tên sản phẩm</label>
+                <input asp-for="Product.Name" class="form-control" placeholder="Nhập tên sản phẩm" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label asp-for="Product.Price">Giá</label>
+                <input asp-for="Product.Price" class="form-control" type="number" min="0" step="1000" placeholder="Nhập giá bán" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.category_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.category_id, ViewBag.ListCategory as SelectList, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label asp-for="Product.Description">Mô tả sản phẩm</label>
+                <textarea asp-for="Product.Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Product.Description" class="text-danger"></span>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.brand_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.brand_id, ViewBag.ListBrand as SelectList, new { @class = "form-control" })
-
-                @Html.ValidationMessageFor(model => model.brand_id, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label asp-for="Product.Stock">Tồn kho</label>
+                <input asp-for="Product.Stock" class="form-control" type="number" min="0" />
+                <span asp-validation-for="Product.Stock" class="text-danger"></span>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="ImageUpload" />
+            <div class="form-group">
+                <label asp-for="Product.CategoryId">Danh mục</label>
+                <select asp-for="Product.CategoryId" class="form-control">
+                    @foreach (var item in ViewBag.ListCategory as List<SelectListItem>)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.created_at, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.created_at, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.created_at, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+
+            <div class="form-group">
+                <label>Ảnh sản phẩm</label>
+                <input type="file" id="imageFile" name="ImageUpload" class="form-control-file" />
+                <img id="previewImage" style="display: none; max-width: 200px;" />
             </div>
-        </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success">💾 Lưu sản phẩm</button>
+                <a href="/Admin/Product/Index" class="btn btn-secondary">⬅ Quay lại</a>
+            </div>
+        </form>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>

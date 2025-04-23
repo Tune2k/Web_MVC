@@ -1,0 +1,308 @@
+﻿/* proStyle.css - Style riêng cho trang danh sách sản phẩm */
+
+/* Căn giữa toàn bộ nội dung */
+
+/* Giới hạn độ rộng nội dung và căn giữa */
+.product-container {
+	width: 100%;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+/* Định dạng cho phần tiêu đề của bảng */
+.product-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+	.product-header h2 {
+		font-size: 24px;
+		margin: 0;
+	}
+
+	.product-header a {
+		padding: 10px 20px;
+		background-color: #4CAF50;
+		color: white;
+		text-decoration: none;
+		border-radius: 5px;
+	}
+
+.btn-add {
+	background-color: #28a745;
+	color: white;
+	padding: 10px 16px;
+	text-decoration: none;
+	border-radius: 5px;
+	font-weight: bold;
+	transition: 0.3s ease-in-out;
+}
+
+	.btn-add:hover {
+		background-color: #218838;
+	}
+
+/* Định dạng cho bảng sản phẩm */
+.product-table {
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed; /* Giữ cột đều nhau */
+}
+
+	.product-table th, .product-table td {
+		padding: 12px 10px;
+		text-align: left;
+		word-wrap: break-word;
+		vertical-align: top;
+	}
+
+		.product-table td img {
+			width: 80px;
+			height: auto;
+			border-radius: 6px;
+		}
+
+	/* Định dạng mô tả */
+	.product-table .description-cell {
+		max-width: 300px;
+		white-space: normal;
+	}
+
+/* Nút hành động */
+.btn {
+	padding: 6px 12px;
+	margin-right: 5px;
+	border-radius: 4px;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: 500;
+	color: white;
+	transition: 0.3s ease;
+}
+
+.btn-edit {
+	background-color: #007bff;
+}
+
+	.btn-edit:hover {
+		background-color: #0056b3;
+	}
+
+.btn-delete {
+	background-color: #dc3545;
+}
+
+	.btn-delete:hover {
+		background-color: #c82333;
+	}
+
+
+
+
+/*thêm sản phẩm*/
+.product-form-container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px 30px;
+	background-color: #fff;
+	border-radius: 12px;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+	.product-form-container h2 {
+		text-align: center;
+		margin-bottom: 25px;
+		color: #333;
+	}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+.form-control {
+	width: 100%;
+	padding: 10px 12px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+}
+
+.btn-submit {
+	width: 100%;
+	background-color: #28a745;
+	color: white;
+	padding: 12px;
+	border: none;
+	font-size: 16px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+	.btn-submit:hover {
+		background-color: #218838;
+	}
+
+
+/* Style cho trang danh sách danh mục */
+.category-container {
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed; /* Giữ cột đều nhau */
+}
+
+.category-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+	.category-header h2 {
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	.category-header .btn-add {
+		background-color: #28a745;
+		color: white;
+		padding: 10px 20px;
+		text-decoration: none;
+		border-radius: 5px;
+		font-weight: bold;
+		width: auto;
+	}
+
+.category-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	.category-table th, .category-table td {
+		padding: 12px;
+		text-align: left;
+	}
+
+	.category-table th {
+		background-color: #f4f4f4;
+	}
+
+	.category-table .description-cell {
+		max-width: 250px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+
+
+/*Style Users*/
+
+
+.user-container {
+	max-width: 900px;
+	margin: 40px auto;
+	padding: 20px;
+}
+
+.user-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+	.user-header h2 {
+		font-size: 24px;
+		color: #2c3e50;
+	}
+
+.btn-add {
+	background-color: #28a745;
+	color: #fff;
+	padding: 10px 20px;
+	border-radius: 6px;
+	text-decoration: none;
+}
+
+.user-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	.user-table th,
+	.user-table td {
+		padding: 12px;
+		text-align: left;
+		border-bottom: 1px solid #ddd;
+	}
+
+	.user-table th {
+		background-color: #f4f4f4;
+		font-weight: bold;
+	}
+
+	.user-table .btn {
+		padding: 6px 12px;
+		border-radius: 6px;
+		color: white;
+		text-decoration: none;
+	}
+
+	.user-table .btn-edit {
+		background-color: #007bff;
+	}
+
+	.user-table .btn-delete {
+		background-color: #dc3545;
+	}
+
+	.user-table .btn:hover {
+		opacity: 0.8;
+	}
+/* Đảm bảo bảng chiếm toàn bộ chiều rộng */
+.user-table {
+	width: 100%; /* Bảng sẽ chiếm toàn bộ chiều rộng màn hình */
+	table-layout: fixed; /* Đảm bảo bảng không bị giãn */
+}
+
+	/* Giới hạn chiều rộng cho cột mật khẩu */
+	.user-table th:nth-child(5),
+	.user-table td:nth-child(5) {
+		max-width: 200px; /* Giới hạn chiều rộng cột mật khẩu */
+		overflow: hidden; /* Ẩn nội dung nếu nó dài hơn chiều rộng */
+		text-overflow: ellipsis; /* Thêm dấu ba chấm "..." nếu nội dung tràn */
+		white-space: nowrap; /* Ngăn không cho văn bản xuống dòng */
+	}
+
+
+
+/*Style Order*/
+.order-status {
+	display: inline-block;
+	padding: 4px 10px;
+	border-radius: 5px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #fff;
+	background-color: #6c757d; /* mặc định */
+}
+
+	.order-status.pending {
+		background-color: #ffc107; /* vàng */
+	}
+
+	.order-status.completed {
+		background-color: #28a745; /* xanh lá */
+	}
+
+	.order-status.cancelled {
+		background-color: #dc3545; /* đỏ */
+	}
+
+/*Style OrderDetail*/
+.product-table tbody tr:hover {
+	background-color: #f9f9f9;
+	transition: background-color 0.3s ease;
+}

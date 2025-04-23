@@ -1,101 +1,44 @@
-﻿@using PagedList.Mvc
-@using PagedList
-@model PagedList.IPagedList<PhamTranXuanTan_2122110248.Context.order>
+﻿@model List<TranNhatTu_2122110250.Model.Order>
+
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
 }
 
-<h2>Quản lý đơn hàng</h2>
-
-@using (Html.BeginForm("Index", "Order", FormMethod.Get))
-{
-    <p>
-        Tìm đơn hàng: @Html.TextBox("Search", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Tìm kiếm" />
-    </p>
-    <script>
-         $(document).ready(function () {
-            // Kiểm tra nếu có thông báo thành công hoặc lỗi
-            $(".change-status").change(function () {
-                var orderId = $(this).data("id");
-                var newStatus = $(this).val();
-
-                $.ajax({
-                    url: '@Url.Action("UpdateStatus", "Order")',
-                    type: 'POST',
-                    data: {
-                        id: orderId,
-                        status: newStatus
-                    },
-                    success: function (response) {
-                        if (response.success) {
-                            toastr.success("Cập nhật trạng thái thành công!");
-                        } else {
-                            toastr.error("Cập nhật trạng thái thất bại. Vui lòng thử lại.");
-                        }
-                    },
-                    error: function () {
-                        toastr.error("Đã xảy ra lỗi. Vui lòng thử lại.");
-                    }
-                });
-            });
-        });
-
-    </script>
+@section Styles {
+    <link href="~/css/admin/proStyle.css" rel="stylesheet" />
 }
 
+<div class="product-container">
+    <div class="product-header">
+        <h2>Danh sách đơn hàng</h2>
+    </div>
 
-<div id="orderList">
-    @Html.Partial("_OrderList", Model)
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    // Xử lý tìm kiếm bằng AJAX
-    $("#searchForm").on("submit", function (e) {
-        e.preventDefault();
-        var url = $(this).attr("action");
-        var query = $("#Search").val();
-
-        $.get(url, { Search: query }, function (data) {
-            $("#orderList").html(data);
-        });
-    });
-
-    // Xử lý phân trang bằng AJAX
-    $(document).on("click", ".pagination a", function (e) {
-        e.preventDefault();
-        var url = $(this).attr("href");
-
-        $.get(url, function (data) {
-            $("#orderList").html(data);
-        });
-    });
-    $(document).ready(function () {
-    // Kiểm tra nếu có thông báo thành công hoặc lỗi
-    $(".change-status").change(function () {
-        var orderId = $(this).data("id");
-        var newStatus = $(this).val();
-
-        $.ajax({
-            url: '@Url.Action("UpdateStatus", "order")',
-            type: 'POST',
-            data: {
-                id: orderId,
-                status: newStatus
-            },
-            success: function (response) {
-                if (response.success) {
-                    toastr.success("Cập nhật trạng thái thành công!");
-                } else {
-                    toastr.error("Cập nhật trạng thái thất bại. Vui lòng thử lại.");
-                }
-            },
-            error: function () {
-                toastr.error("Đã xảy ra lỗi. Vui lòng thử lại.");
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Khách hàng</th>
+                <th>Email</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.CustomerName</td>
+                    <td>@order.CustomerEmail</td>
+                    <td>@order.OrderDate.ToString("dd/MM/yyyy")</td>
+                    <td>@order.TotalPrice.ToString("N0") VNĐ</td>
+                    <td>
+                        <a href="/Admin/Order/Details/@order.Id" class="btn btn-edit">Chi tiết</a>
+                        <a href="/Admin/Order/Delete/@order.Id" class="btn btn-delete">Xóa</a>
+                    </td>
+                </tr>
             }
-        });
-    });
-});
-</script>
+        </tbody>
+    </table>
+</div>

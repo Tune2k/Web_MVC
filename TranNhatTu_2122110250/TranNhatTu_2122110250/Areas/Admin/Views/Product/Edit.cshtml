@@ -1,90 +1,88 @@
-﻿@model PhamTranXuanTan_2122110248.Context.product
+﻿@model TranNhatTu_2122110250.Model.Product
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-}
-<script src="~/Scripts/ckeditor/ckeditor.js"></script>
-<h2>Sửa</h2>
-
-@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-
-<div class="form-horizontal">
-    <h4>Sản phẩm</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.id)
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.description, new { htmlAttributes = new { @class = "form-control", @id = "description" } })
-            <script type="text/javascript" lang="javascript">
-                CKEDITOR.replace("description")
-
-            </script>
-            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.category_id, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.category_id, ViewBag.ListCategory as SelectList, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.category_id, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.brand_id, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.brand_id, ViewBag.ListBrand as SelectList, new { @class = "form-control" })
-
-            @Html.ValidationMessageFor(model => model.brand_id, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input type="file" name="ImageUpload" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.created_at, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.created_at, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.created_at, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+    ViewData["Title"] = "Sửa sản phẩm";
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+@section Styles {
+    <link href="~/css/admin/productForm.css" rel="stylesheet" />
+}
+
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title">✏️ Sửa sản phẩm</h2>
+
+        <form asp-action="Edit" enctype="multipart/form-data" class="product-form">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Name">Tên sản phẩm</label>
+                <input asp-for="Name" class="form-control" placeholder="Nhập tên sản phẩm" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price">Giá</label>
+                <input asp-for="Price" class="form-control" type="number" step="1000" min="0" placeholder="Nhập giá sản phẩm" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description">Mô tả sản phẩm</label>
+                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Nhập mô tả sản phẩm"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Stock">Số lượng tồn</label>
+                <input asp-for="Stock" class="form-control" type="number" min="0" placeholder="Nhập số lượng" />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Category_id">Mã danh mục</label>
+                <input asp-for="Category_id" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Category_name">Tên danh mục</label>
+                <input asp-for="Category_name" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label>Ảnh hiện tại:</label><br />
+                <img src="@Model.Image" alt="Ảnh sản phẩm" style="max-width: 200px; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 10px;" />
+            </div>
+
+            <div class="form-group">
+                <label>Ảnh mới:</label>
+                <input type="file" name="imageFile" class="form-control-file" onchange="previewImage(this)" />
+                <div class="image-preview">
+                    <img id="previewImage" src="#" alt="Ảnh xem trước" style="display:none; max-width: 200px; border-radius: 6px; margin-top: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);" />
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success">💾 Lưu thay đổi</button>
+                <a href="/Admin/Product/Index" class="btn btn-secondary">⬅ Quay lại</a>
+            </div>
+        </form>
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.getElementById('previewImage');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

@@ -1,62 +1,56 @@
-﻿@model IEnumerable<PhamTranXuanTan_2122110248.Context.user>
-
+﻿@model List<TranNhatTu_2122110250.Model.User>
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
 }
 
-<h2>Quản lý người dùng</h2>
+@section Styles {
+    <link href="~/css/admin/proStyle.css" rel="stylesheet" />
+}
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.created_at)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.email)
-            </td>
-            <td>
-                @{
-                    // Xử lý độ dài password và thay thế bằng ký tự '*'
-                    var maskedPassword = item.password != null
-                        ? new string('*', Math.Max(item.password.Length, 5))
-                        : string.Empty;
+<div class="user-container">
+    <div class="user-header">
+        <h2>👤 Danh sách người dùng</h2>
+        @* <a href="/Admin/User/Create" class="btn-add">+ Thêm người dùng</a> *@
+    </div>
+    <div style="overflow-x: auto;">
+        @Html.AntiForgeryToken()
+
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên</th>
+                    <th>Quyền</th>
+                    <th>Email</th>
+                    <th>Mật khẩu</th> <!-- Cột mật khẩu -->
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Username</td>
+                        <!-- Form chỉnh sửa Role -->
+                        @* <td>
+                    <select name="role" class="form-select form-select-sm" style="min-width: 120px;">
+                    <option value="User" selected="@(item.Role == "User" ? "selected" : null)">User</option>
+                    <option value="Admin" selected="@(item.Role == "Admin" ? "selected" : null)">Admin</option>
+                    </select>
+                    </td> *@
+                        <td>@item.Role</td>
+                        <td>@item.Email</td>
+                        <td>@item.Password</td> <!-- Hiển thị mật khẩu -->
+                        <td>
+                            @* <button type="submit" class="btn btn-sm btn-primary me-1">Lưu</button> *@
+                            <a href="/Admin/User/Edit/@item.Id" class="btn btn-edit">Sửa</a>
+                            <a href="/Admin/User/Delete/@item.Id" class="btn btn-delete">Xóa</a>
+                        </td>
+                    </tr>
                 }
-                @maskedPassword
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.created_at)
-            </td>
-            <td>
-               
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-            </td>
-        </tr>
-    }
-
-</table>
+            </tbody>
+        </table>
+    </div>
+</div>

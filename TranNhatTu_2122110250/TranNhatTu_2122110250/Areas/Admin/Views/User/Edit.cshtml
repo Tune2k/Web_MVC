@@ -1,0 +1,62 @@
+﻿@model TranNhatTu_2122110250.Model.UserEditViewModel
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/admin/userForm.css" rel="stylesheet" />
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <strong>Có lỗi xảy ra khi bind dữ liệu người dùng!</strong><br />
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title">✏️ Chỉnh sửa người dùng</h2>
+
+        <form asp-action="Edit" method="post" class="user-form">
+            @Html.AntiForgeryToken()
+
+            <!-- Hidden Id -->
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <!-- Cập nhật tên đăng nhập -->
+            <div class="form-group">
+                <label for="Username">Tên đăng nhập</label>
+                <input type="text" id="Username" name="Username" value="@Model.Username" class="form-control" readonly />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <!-- Cập nhật quyền người dùng -->
+            <div class="form-group">
+                <label for="Role">Quyền</label>
+                <select id="Role" name="Role" class="form-control">
+                    <option value="Admin" @(Model.Role == "Admin" ? "selected" : "")>Admin</option>
+                    <option value="User" @(Model.Role == "User" ? "selected" : "")>User</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <!-- Cập nhật email -->
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" id="Email" name="Email" value="@Model.Email" class="form-control" readonly />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <!-- XÓA phần mật khẩu (nếu bạn không cập nhật mật khẩu ở đây) -->
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success">💾 Lưu người dùng</button>
+                <a href="/Admin/User/Index" class="btn btn-secondary">⬅ Quay lại</a>
+            </div>
+        </form>
+    </div>
+</div>

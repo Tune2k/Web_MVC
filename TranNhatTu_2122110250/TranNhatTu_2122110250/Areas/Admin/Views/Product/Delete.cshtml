@@ -1,84 +1,45 @@
-﻿@model PhamTranXuanTan_2122110248.Context.product
+﻿@model TranNhatTu_2122110250.Model.Product
 
 @{
-    ViewBag.Title = "Delete";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+    ViewData["Title"] = "Xóa sản phẩm";
 }
 
-<h2>Xóa</h2>
+@section Styles {
+    <link href="~/css/admin/productForm.css" rel="stylesheet" />
+}
 
-<h3>Bạn có chắc chắn muốn xóa sản phẩm này không?</h3>
-<div>
-    <h4>sản phẩm @Model.name</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title text-danger">⚠️ Xác nhận xóa sản phẩm</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+        <form asp-action="Delete" method="post" class="product-form">
+            <input type="hidden" asp-for="Id" />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
+            <div class="form-group">
+                <p>Bạn có chắc chắn muốn xóa sản phẩm sau?</p>
+                <ul class="product-delete-info">
+                    <li><strong>Tên sản phẩm:</strong> @Model.Name</li>
+                    <li><strong>Giá:</strong> @Model.Price.ToString("N0") VNĐ</li>
+                    <li><strong>Số lượng:</strong> @Model.Stock</li>
+                </ul>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
+            <div class="form-group">
+                <label>Ảnh sản phẩm:</label><br />
+                <img src="@Model.Image" alt="@Model.Name" style="max-width: 200px; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 10px;" />
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.category_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.category_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.brand_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.brand_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.image)
-        </dt>
-        <td>
-            <img src="~/Content/images/products/@Model.image" alt="Product Image" style="width: 100px; height: auto;" />
-        </td>
-        @*<dd>
-            @Html.DisplayFor(model => model.image)
-        </dd>*@
-
-        <dt>
-            @Html.DisplayNameFor(model => model.created_at)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.created_at)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm("Delete", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    { 
-        @Html.AntiForgeryToken()
-
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        @Html.ActionLink("Back to List", "Index")
+            <div class="form-actions">
+                <button type="submit" class="btn btn-danger">❌ Xóa</button>
+                <a href="/Admin/Product/Index" class="btn btn-secondary">⬅ Quay lại</a>
+            </div>
+        </form>
     </div>
-    }
 </div>
+
+@section Scripts {
+    <script>
+        // Nếu cần, có thể thêm JavaScript xử lý ở đây
+    </script>
+}

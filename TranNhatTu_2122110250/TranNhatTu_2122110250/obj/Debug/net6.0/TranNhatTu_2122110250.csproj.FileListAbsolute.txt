@@ -1,0 +1,192 @@
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\appsettings.Development.json
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\appsettings.json
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.staticwebassets.runtime.json
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.exe
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.deps.json
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.runtimeconfig.json
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.pdb
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Humanizer.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.Mvc.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.Razor.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.Helpers.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.WebPages.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.ObjectPool.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\PagedList.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\PagedList.Mvc.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.IO.Pipelines.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Runtime.Caching.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Text.Json.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\X.PagedList.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\X.PagedList.Mvc.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\X.PagedList.Web.Common.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.csproj.AssemblyReference.cache
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.GeneratedMSBuildEditorConfig.editorconfig
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.AssemblyInfoInputs.cache
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.AssemblyInfo.cs
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.csproj.CoreCompileInputs.cache
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.MvcApplicationPartsAssemblyInfo.cs
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.MvcApplicationPartsAssemblyInfo.cache
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.RazorAssemblyInfo.cache
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.RazorAssemblyInfo.cs
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets\msbuild.TranNhatTu_2122110250.Microsoft.AspNetCore.StaticWebAssets.props
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets\msbuild.build.TranNhatTu_2122110250.props
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.TranNhatTu_2122110250.props
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.TranNhatTu_2122110250.props
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets.pack.json
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets.build.json
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets.development.json
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\scopedcss\bundle\TranNhatTu_2122110250.styles.css
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.csproj.CopyComplete
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\refint\TranNhatTu_2122110250.dll
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.pdb
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.genruntimeconfig.cache
+D:\ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\ref\TranNhatTu_2122110250.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\appsettings.Development.json
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\appsettings.json
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.staticwebassets.runtime.json
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.exe
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.deps.json
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.runtimeconfig.json
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\TranNhatTu_2122110250.pdb
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Humanizer.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.Mvc.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.Razor.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.Helpers.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Web.WebPages.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.ObjectPool.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\PagedList.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\PagedList.Mvc.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.IO.Pipelines.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Runtime.Caching.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Text.Json.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\X.PagedList.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\X.PagedList.Mvc.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\X.PagedList.Web.Common.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.csproj.AssemblyReference.cache
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.GeneratedMSBuildEditorConfig.editorconfig
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.AssemblyInfoInputs.cache
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.AssemblyInfo.cs
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.csproj.CoreCompileInputs.cache
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.MvcApplicationPartsAssemblyInfo.cs
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.MvcApplicationPartsAssemblyInfo.cache
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.RazorAssemblyInfo.cache
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.RazorAssemblyInfo.cs
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets\msbuild.TranNhatTu_2122110250.Microsoft.AspNetCore.StaticWebAssets.props
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets\msbuild.build.TranNhatTu_2122110250.props
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.TranNhatTu_2122110250.props
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.TranNhatTu_2122110250.props
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets.pack.json
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets.build.json
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\staticwebassets.development.json
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\scopedcss\bundle\TranNhatTu_2122110250.styles.css
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.csproj.CopyComplete
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\refint\TranNhatTu_2122110250.dll
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.pdb
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\TranNhatTu_2122110250.genruntimeconfig.cache
+D:\ASP\Đồ án ASP\TranNhatTu_2122110250\TranNhatTu_2122110250\obj\Debug\net6.0\ref\TranNhatTu_2122110250.dll

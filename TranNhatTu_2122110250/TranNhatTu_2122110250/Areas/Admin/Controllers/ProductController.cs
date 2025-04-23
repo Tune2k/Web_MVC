@@ -1,255 +1,248 @@
-﻿using PagedList;
-using PhamTranXuanTan_2122110248.Context;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing.Printing;
+﻿using Microsoft.AspNetCore.Mvc;
+using TranNhatTu_2122110250.Data;
+using TranNhatTu_2122110250.Model;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using TranNhatTu_2122110250.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using TranNhatTu_2122110250.Areas.Admin.ViewModels;
+using TranNhatTu_2122110250.Helpers;
 using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.UI;
-using static PhamTranXuanTan_2122110248.Common;
+using System.Runtime.InteropServices;
+using System.Text;
 
-namespace PhamTranXuanTan_2122110248.Areas.Admin.Controllers
+//using YourProject.Models;
+
+namespace YourProject.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ProductController : Controller
     {
-        ECommerceDBEntities1 objECommerceDBEntities1 = new ECommerceDBEntities1();
-        // GET: Admin/Product
-        public ActionResult Index(string currentFilter, string SearchString, int? page) 
-        { 
-            var lstProduct = new List<product>();
-            if (SearchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                    SearchString = currentFilter;
-            }
-        
-            if (!string.IsNullOrEmpty(SearchString))
-                {
-                    lstProduct = objECommerceDBEntities1.products.Where(n => n.name.Contains(SearchString)).ToList();
-                }
-                //lây ds sản phẩm theo từ khóa tìm kiếm
+        private readonly AppDbContext _context;
 
-                else
-                {
-                    lstProduct = objECommerceDBEntities1.products.ToList();
-                }
-                //lay all sản phẩm trong bảng product
-                ViewBag.CurrentFilter = SearchString;
-            //số lượng item của 1 trang = 4
-            int pageSize = 4;
-            int pageNumber = (page ?? 1);
-            // sắp xếp theo id sản phẩm, sp mới đưa lên đầu
-            lstProduct=lstProduct.OrderByDescending(n => n.id).ToList();
-            return View(lstProduct.ToPagedList(pageNumber, pageSize));
+        public ProductController(AppDbContext context)
+        {
+            _context = context;
         }
+
+        public IActionResult Index()
+        {
+            var products = _context.Products
+                                   .Include(p => p.Category) // Load danh mục liên quan
+                                   .ToList();
+
+            return View(new ProductIndexViewModel
+            {
+                Products = products
+            });
+        }
+
+
+
+
+
+        private void LoadData()
+        {
+            // Lấy danh sách Category từ cơ sở dữ liệu
+            var categories = _context.Category
+                .Select(c => new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name
+                }).ToList();
+
+            // Thêm tùy chọn "Chọn danh mục" vào đầu danh sách
+            categories.Insert(0, new SelectListItem
+            {
+                Value = "",
+                Text = "-- Chọn danh mục --",
+                Selected = true
+            });
+
+            // Cập nhật danh sách danh mục vào ViewBag
+            ViewBag.ListCategory = categories;
+
+            // Tương tự nếu bạn có danh sách thương hiệu
+            var brands = _context.Brands
+                .Select(b => new SelectListItem
+                {
+                    Value = b.id.ToString(),
+                    Text = b.name
+                }).ToList();
+
+            // Cập nhật danh sách thương hiệu vào ViewBag (nếu có)
+            ViewBag.ListBrand = brands;
+        }
+
+
+
+
         [HttpGet]
-        public ActionResult Create()
+        public IActionResult Create()
         {
-            this.loadData();
-            return View();
+            LoadData();  // Gọi LoadData để lấy danh sách danh mục và thương hiệu
+
+            var vm = new ProductCreateViewModel
+            {
+                Product = new Product()  // Khởi tạo đối tượng Product mới
+            };
+
+            return View(vm);
         }
 
-        [ValidateInput(false)]
+
+
+
         [HttpPost]
-        public ActionResult Create(product objProduct)
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(ProductCreateViewModel viewModel, IFormFile ImageUpload)
         {
-            this.loadData();
+            LoadData();
+            var product = viewModel.Product;
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Đường dẫn thư mục lưu ảnh
-                    string folderPath = Server.MapPath("~/Content/images/products/");
-
-                    // Log danh sách các file trong thư mục trước khi lưu
-                    if (Directory.Exists(folderPath))
+                    // Xử lý ảnh nếu có
+                    if (ImageUpload != null && ImageUpload.Length > 0)
                     {
-                        string[] files = Directory.GetFiles(folderPath);
-                        System.Diagnostics.Debug.WriteLine("Các file hiện có trong thư mục:");
-                        foreach (var file in files)
+                        string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/products");
+
+                        // Kiểm tra xem thư mục có tồn tại không, nếu không thì tạo
+                        if (!Directory.Exists(folderPath))
+                            Directory.CreateDirectory(folderPath);
+
+                        // Kiểm tra quyền ghi thư mục
+                        if (!FilePermissionHelper.HasWritePermission(folderPath))
                         {
-                            System.Diagnostics.Debug.WriteLine(file);
+                            ModelState.AddModelError("", "Không có quyền ghi vào thư mục lưu ảnh: " + folderPath);
+                            return View(viewModel);
                         }
+
+                        // Tạo tên file duy nhất cho ảnh
+                        string uniqueFileName = Guid.NewGuid() + "_" + Path.GetFileName(ImageUpload.FileName);
+                        string fullPath = Path.Combine(folderPath, uniqueFileName);
+
+                        // Lưu ảnh vào thư mục
+                        using (var stream = new FileStream(fullPath, FileMode.Create))
+                        {
+                            ImageUpload.CopyTo(stream);
+                        }
+
+                        // ✅ Chỉ lưu tên file ảnh vào DB (không lưu đường dẫn)
+                        product.Image = uniqueFileName;
+                    }
+
+                    // Thiết lập thông tin khác cho sản phẩm
+                    product.CreatedDate = DateTime.Now;
+
+                    // Lấy thông tin danh mục từ DB
+                    var category = _context.Category.FirstOrDefault(c => c.Id == product.CategoryId);
+                    if (category != null)
+                    {
+                        product.Category_name = category.Name;
                     }
                     else
                     {
-                        System.Diagnostics.Debug.WriteLine("Thư mục không tồn tại: " + folderPath);
+                        viewModel.CategoryLoadError = "Danh mục không tồn tại.";
+                        return View(viewModel);
                     }
 
-                    // Lưu ảnh nếu có
-                    if (objProduct.ImageUpload != null)
-                    {
-                        string filename = Path.GetFileNameWithoutExtension(objProduct.ImageUpload.FileName);
-                        string extension = Path.GetExtension(objProduct.ImageUpload.FileName);
-                        filename = filename + extension;
+                    // Thêm sản phẩm vào cơ sở dữ liệu
+                    _context.Products.Add(product);
+                    _context.SaveChanges();
 
-                        // Đường dẫn đầy đủ để lưu file
-                        string fullPath = Path.Combine(folderPath, filename);
-                        objProduct.image = filename;
-                        objProduct.ImageUpload.SaveAs(fullPath);
-
-                        System.Diagnostics.Debug.WriteLine("Ảnh đã được lưu tại: " + fullPath);
-                    }
-
-                    // Lưu thông tin sản phẩm
-                    objProduct.created_at = DateTime.Now;
-                    objECommerceDBEntities1.products.Add(objProduct);
-                    objECommerceDBEntities1.SaveChanges();
+                    // Chuyển hướng về trang danh sách sản phẩm
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine("Lỗi: " + ex.Message);
-                    return View();
+                    ModelState.AddModelError("", "Lỗi khi lưu sản phẩm: " + ex.Message);
                 }
             }
-            return View(objProduct);
+
+            return View(viewModel);
         }
 
-        [HttpGet]
-        public ActionResult Details(int id)
+
+
+
+
+
+
+
+        public IActionResult Edit(int id)
         {
-            var details = objECommerceDBEntities1.products.Where(x => x.id == id).FirstOrDefault();
-            return View(details);
-
+            var product = _context.Products.Find(id);
+            if (product == null)
+                return NotFound();
+            return View(product);
         }
-        [HttpGet]
-        public ActionResult Delete(int id)
-        {
-            var del = objECommerceDBEntities1.products.Where(x => x.id == id).FirstOrDefault();
-            return View(del);
 
-        }
         [HttpPost]
-        public ActionResult Delete(product objPro)
+        public IActionResult Edit(Product product, IFormFile imageFile)
         {
-            try
+            if (ModelState.IsValid)
             {
-                var del = objECommerceDBEntities1.products.Where(x => x.id == objPro.id).FirstOrDefault();
-                if (del != null)
+                var existing = _context.Products.Find(product.Id);
+                if (existing == null)
+                    return NotFound();
+
+                // Cập nhật ảnh nếu có file mới
+                if (imageFile != null && imageFile.Length > 0)
                 {
-                    // Lấy đường dẫn của file ảnh
-                    string folderPath = Server.MapPath("~/Content/images/products/");
-                    string filePath = Path.Combine(folderPath, del.image);
+                    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+                    string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                    // Kiểm tra và xóa file ảnh nếu tồn tại
-                    if (System.IO.File.Exists(filePath))
+                    using (var stream = new FileStream(filePath, FileMode.Create))
                     {
-                        System.IO.File.Delete(filePath);
-                        TempData["LogMessage"] = "File ảnh đã được xóa: " + filePath;
-                    }
-                    else
-                    {
-                        TempData["LogMessage"] = "File ảnh không tồn tại: " + filePath;
+                        imageFile.CopyTo(stream);
                     }
 
-                    // Xóa sản phẩm khỏi database
-                    objECommerceDBEntities1.products.Remove(del);
-                    objECommerceDBEntities1.SaveChanges();
+                    existing.Image = "/images/" + uniqueFileName;
                 }
+
+                // Cập nhật các trường
+                existing.Name = product.Name;
+                existing.Price = product.Price;
+                existing.Description = product.Description;
+                existing.Stock = product.Stock;
+                existing.CategoryId = product.CategoryId;
+                existing.Category_name = product.Category_name;
+
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
-            catch (Exception ex)
+
+            return View(product);
+        }
+
+
+        public IActionResult Delete(int id)
+        {
+            var product = _context.Products.Find(id);
+            if (product == null)
+                return NotFound();
+
+            return View(product);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var product = _context.Products.Find(id);
+            if (product != null)
             {
-                TempData["LogMessage"] = "Lỗi khi xóa sản phẩm: " + ex.Message;
+                _context.Products.Remove(product);
+                _context.SaveChanges();
             }
 
             return RedirectToAction("Index");
         }
 
 
-        [HttpGet]
-        public ActionResult Edit(int id)
-        {
-            this.loadData();
-            var edit = objECommerceDBEntities1.products.Where(x => x.id == id).FirstOrDefault();
-            return View(edit);
 
-        }
-        [HttpPost]
-        public ActionResult Edit(int id, product objProduct)
-        {
-            this.loadData();
-            try
-            {
-                // Lấy sản phẩm cũ từ database
-                var existingProduct = objECommerceDBEntities1.products.FirstOrDefault(p => p.id == id);
-                if (existingProduct == null)
-                {
-                    return HttpNotFound("Sản phẩm không tồn tại!");
-                }
-
-                // Đường dẫn thư mục lưu ảnh
-                string folderPath = Server.MapPath("~/Content/images/products/");
-
-                // Xử lý ảnh mới (nếu có upload ảnh mới)
-                if (objProduct.ImageUpload != null)
-                {
-                    // Xóa ảnh cũ (nếu có)
-                    if (!string.IsNullOrEmpty(existingProduct.image))
-                    {
-                        string oldImagePath = Path.Combine(folderPath, existingProduct.image);
-                        if (System.IO.File.Exists(oldImagePath))
-                        {
-                            System.IO.File.Delete(oldImagePath);
-                            System.Diagnostics.Debug.WriteLine("Đã xóa ảnh cũ: " + oldImagePath);
-                        }
-                    }
-
-                    // Lưu ảnh mới
-                    string filename = Path.GetFileNameWithoutExtension(objProduct.ImageUpload.FileName);
-                    string extension = Path.GetExtension(objProduct.ImageUpload.FileName);
-                    filename = filename + extension;
-
-                    string fullPath = Path.Combine(folderPath, filename);
-                    objProduct.image = filename; // Gán tên ảnh mới vào product
-                    objProduct.ImageUpload.SaveAs(fullPath);
-
-                    System.Diagnostics.Debug.WriteLine("Ảnh mới đã được lưu tại: " + fullPath);
-                }
-                else
-                {
-                    // Nếu không upload ảnh mới, giữ nguyên ảnh cũ
-                    objProduct.image = existingProduct.image;
-                }
-
-                // Cập nhật các thông tin khác của sản phẩm
-                objProduct.created_at = DateTime.Now;
-                objECommerceDBEntities1.Entry(existingProduct).CurrentValues.SetValues(objProduct);
-                objECommerceDBEntities1.SaveChanges();
-                // Lưu thông tin sản phẩm
-
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Lỗi khi chỉnh sửa sản phẩm: " + ex.Message);
-                return View(objProduct);
-            }
-        }
-
-        void loadData()
-        {
-            Common common = new Common();
-            //lấy dữ liệu danh mục dưới DB
-            var lstCat = objECommerceDBEntities1.categories.ToList();
-            //Convert sang select list dạng value, text
-            ListtoDataTableConverter converter = new ListtoDataTableConverter();
-            DataTable dtCategory = converter.ToDataTable(lstCat);
-            ViewBag.ListCategory = common.ToSelectList(dtCategory, "Id", "Name");
-            // lấy dữ liệu thương hiệu dưới DB
-            var lstBrand = objECommerceDBEntities1.brands.ToList();
-            DataTable dtBrand = converter.ToDataTable(lstBrand);
-            //Convert sang select list dạng value, text
-            ViewBag.ListBrand = common.ToSelectList(dtBrand, "Id", "Name");
-
-        }
-        
     }
+
 }

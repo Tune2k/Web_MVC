@@ -1,66 +1,35 @@
-﻿@model PhamTranXuanTan_2122110248.Context.user
+﻿@model TranNhatTu_2122110250.Model.User
 
 @{
-    ViewBag.Title = "Delete";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
 }
 
-<h2>Xóa người dùng @Model.username</h2>
+@section Styles {
+    <link href="~/css/admin/userForm.css" rel="stylesheet" />
+}
 
-<h3>Bạn có chắc chắn muốn xóa không?</h3>
-<div>
+<div class="form-wrapper">
+    <div class="form-card">
+        <h2 class="form-title text-danger">❌ Xóa người dùng</h2>
 
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.username)
-        </dt>
+        <form asp-action="Delete" method="post" class="user-form">
+            @Html.AntiForgeryToken() <!-- ✅ Rất quan trọng để không lỗi 400 -->
 
-        <dd>
-            @Html.DisplayFor(model => model.username)
-        </dd>
+            <input type="hidden" asp-for="Id" />
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+            <div class="form-group">
+                <p>Bạn có chắc chắn muốn xóa người dùng này?</p>
+                <ul>
+                    <li><strong>Tên:</strong> @Model.Username</li>
+                    <li><strong>Email:</strong> @Model.Email</li>
+                </ul>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-danger">❌ Xóa</button>
+                <a href="/Admin/User/Index" class="btn btn-secondary">⬅ Quay lại</a>
+            </div>
+        </form>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.created_at)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.created_at)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm("Delete", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+    </div>
 </div>
