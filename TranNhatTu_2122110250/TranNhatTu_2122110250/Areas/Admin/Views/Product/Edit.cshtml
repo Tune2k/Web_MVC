@@ -1,4 +1,4 @@
-﻿@model TranNhatTu_2122110250.Model.Product
+﻿@model TranNhatTu_2122110250.ViewModels.ProductEditViewModel
 
 @{
     Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
@@ -13,54 +13,55 @@
     <div class="form-card">
         <h2 class="form-title">✏️ Sửa sản phẩm</h2>
 
-        <form asp-action="Edit" enctype="multipart/form-data" class="product-form">
-            <input type="hidden" asp-for="Id" />
+        @if (Model != null && !string.IsNullOrEmpty(Model.CategoryLoadError))
+        {
+            <div class="alert alert-danger">
+                @Model.CategoryLoadError
+            </div>
+        }
+
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" class="product-form">
+            @Html.HiddenFor(model => model.Id)
 
             <div class="form-group">
-                <label asp-for="Name">Tên sản phẩm</label>
-                <input asp-for="Name" class="form-control" placeholder="Nhập tên sản phẩm" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                @Html.LabelFor(model => model.Name)
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Nhập tên sản phẩm" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label asp-for="Price">Giá</label>
-                <input asp-for="Price" class="form-control" type="number" step="1000" min="0" placeholder="Nhập giá sản phẩm" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+                @Html.LabelFor(model => model.Price)
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control", type = "number", min = "0", step = "1000", placeholder = "Nhập giá sản phẩm" })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label asp-for="Description">Mô tả sản phẩm</label>
-                <textarea asp-for="Description" class="form-control" rows="4" placeholder="Nhập mô tả sản phẩm"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
+                @Html.LabelFor(model => model.Description)
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 4 })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label asp-for="Stock">Số lượng tồn</label>
-                <input asp-for="Stock" class="form-control" type="number" min="0" placeholder="Nhập số lượng" />
-                <span asp-validation-for="Stock" class="text-danger"></span>
+                @Html.LabelFor(model => model.Stock)
+                @Html.TextBoxFor(model => model.Stock, new { @class = "form-control", type = "number", min = "0" })
+                @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label asp-for="Category_id">Mã danh mục</label>
-                <input asp-for="Category_id" class="form-control" readonly />
+                @Html.LabelFor(model => model.CategoryId)
+                @Html.DropDownListFor(model => model.CategoryId, (SelectList)ViewData["CategoryId"], "Chọn danh mục", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label asp-for="Category_name">Tên danh mục</label>
-                <input asp-for="Category_name" class="form-control" readonly />
+                <label>Ảnh hiện tại</label><br />
+                <img src="~/images/products/@Model.Image" alt="Ảnh sản phẩm" style="max-width: 200px; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 10px;" />
             </div>
 
             <div class="form-group">
-                <label>Ảnh hiện tại:</label><br />
-                <img src="@Model.Image" alt="Ảnh sản phẩm" style="max-width: 200px; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.1); margin-bottom: 10px;" />
-            </div>
-
-            <div class="form-group">
-                <label>Ảnh mới:</label>
+                @Html.LabelFor(model => model.ImageFile, "Chọn ảnh mới")
                 <input type="file" name="imageFile" class="form-control-file" onchange="previewImage(this)" />
-                <div class="image-preview">
-                    <img id="previewImage" src="#" alt="Ảnh xem trước" style="display:none; max-width: 200px; border-radius: 6px; margin-top: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);" />
-                </div>
+                <img id="previewImage" style="display: none; max-width: 200px;" />
             </div>
 
             <div class="form-actions">

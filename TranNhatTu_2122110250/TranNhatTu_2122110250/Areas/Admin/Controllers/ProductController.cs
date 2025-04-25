@@ -5,10 +5,13 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using TranNhatTu_2122110250.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using TranNhatTu_2122110250.Areas.Admin.ViewModels;
+using Microsoft.Extensions.Logging; // Đảm bảo import namespace này
+
 using TranNhatTu_2122110250.Helpers;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using Microsoft.Extensions.Hosting.Internal;
 
 //using YourProject.Models;
 
@@ -18,10 +21,14 @@ namespace YourProject.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly ILogger<ProductController> _logger; // Thêm biến _logger
 
-        public ProductController(AppDbContext context)
+        public ProductController(AppDbContext context, IWebHostEnvironment hostingEnvironment, ILogger<ProductController> logger)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -42,36 +49,19 @@ namespace YourProject.Areas.Admin.Controllers
 
         private void LoadData()
         {
-            // Lấy danh sách Category từ cơ sở dữ liệu
-            var categories = _context.Category
-                .Select(c => new SelectListItem
-                {
-                    Value = c.Id.ToString(),
-                    Text = c.Name
-                }).ToList();
+            // Get all categories from the database
+            var categories = _context.Category.ToList();
 
-            // Thêm tùy chọn "Chọn danh mục" vào đầu danh sách
-            categories.Insert(0, new SelectListItem
-            {
-                Value = "",
-                Text = "-- Chọn danh mục --",
-                Selected = true
-            });
-
-            // Cập nhật danh sách danh mục vào ViewBag
-            ViewBag.ListCategory = categories;
-
-            // Tương tự nếu bạn có danh sách thương hiệu
-            var brands = _context.Brands
-                .Select(b => new SelectListItem
-                {
-                    Value = b.id.ToString(),
-                    Text = b.name
-                }).ToList();
-
-            // Cập nhật danh sách thương hiệu vào ViewBag (nếu có)
-            ViewBag.ListBrand = brands;
+            // Convert to SelectList to use in the dropdown
+            ViewData["CategoryId"] = new SelectList(categories, "Id", "Name");
         }
+
+
+
+
+
+
+
 
 
 
@@ -79,90 +69,113 @@ namespace YourProject.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            LoadData();  // Gọi LoadData để lấy danh sách danh mục và thương hiệu
+            // Fetch categories from the database
+            var categories = _context.Category.ToList();
 
-            var vm = new ProductCreateViewModel
-            {
-                Product = new Product()  // Khởi tạo đối tượng Product mới
-            };
+            // Create a SelectList for the dropdown
+            ViewData["CategoryId"] = new SelectList(categories, "Id", "Name");
 
-            return View(vm);
+            return View();
         }
+
+
 
 
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(ProductCreateViewModel viewModel, IFormFile ImageUpload)
+        public async Task<IActionResult> Create(ProductCreateViewModel model)
         {
-            LoadData();
-            var product = viewModel.Product;
+            if (!ModelState.IsValid)
+            {
+                _logger.LogWarning("ModelState is not valid");
 
-            if (ModelState.IsValid)
+                foreach (var key in ModelState.Keys)
+                {
+                    var errors = ModelState[key].Errors;
+                    foreach (var error in errors)
+                    {
+                        _logger.LogError($"ModelState error for {key}: {error.ErrorMessage}");
+                    }
+                }
+
+                // Gọi lại hàm LoadData để nạp lại SelectList vào ViewData
+                LoadData();
+
+                return View(model);
+            }
+
+            _logger.LogInformation("ModelState is valid");
+
+            // Xử lý upload file hình ảnh
+            string uniqueFileName = null;
+            if (model.ImageFile != null && model.ImageFile.Length > 0)
             {
                 try
                 {
-                    // Xử lý ảnh nếu có
-                    if (ImageUpload != null && ImageUpload.Length > 0)
+                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "images/products");
+                    uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(model.ImageFile.FileName);
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
                     {
-                        string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/products");
-
-                        // Kiểm tra xem thư mục có tồn tại không, nếu không thì tạo
-                        if (!Directory.Exists(folderPath))
-                            Directory.CreateDirectory(folderPath);
-
-                        // Kiểm tra quyền ghi thư mục
-                        if (!FilePermissionHelper.HasWritePermission(folderPath))
-                        {
-                            ModelState.AddModelError("", "Không có quyền ghi vào thư mục lưu ảnh: " + folderPath);
-                            return View(viewModel);
-                        }
-
-                        // Tạo tên file duy nhất cho ảnh
-                        string uniqueFileName = Guid.NewGuid() + "_" + Path.GetFileName(ImageUpload.FileName);
-                        string fullPath = Path.Combine(folderPath, uniqueFileName);
-
-                        // Lưu ảnh vào thư mục
-                        using (var stream = new FileStream(fullPath, FileMode.Create))
-                        {
-                            ImageUpload.CopyTo(stream);
-                        }
-
-                        // ✅ Chỉ lưu tên file ảnh vào DB (không lưu đường dẫn)
-                        product.Image = uniqueFileName;
+                        await model.ImageFile.CopyToAsync(fileStream);
                     }
 
-                    // Thiết lập thông tin khác cho sản phẩm
-                    product.CreatedDate = DateTime.Now;
-
-                    // Lấy thông tin danh mục từ DB
-                    var category = _context.Category.FirstOrDefault(c => c.Id == product.CategoryId);
-                    if (category != null)
-                    {
-                        product.Category_name = category.Name;
-                    }
-                    else
-                    {
-                        viewModel.CategoryLoadError = "Danh mục không tồn tại.";
-                        return View(viewModel);
-                    }
-
-                    // Thêm sản phẩm vào cơ sở dữ liệu
-                    _context.Products.Add(product);
-                    _context.SaveChanges();
-
-                    // Chuyển hướng về trang danh sách sản phẩm
-                    return RedirectToAction("Index");
+                    _logger.LogInformation($"Image uploaded successfully: {uniqueFileName}");
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Lỗi khi lưu sản phẩm: " + ex.Message);
+                    _logger.LogError($"Error uploading file: {ex.Message}");
+                    ModelState.AddModelError(string.Empty, "Error uploading image.");
+                    return View(model);
                 }
             }
+            else
+            {
+                _logger.LogWarning("No image uploaded.");
+            }
 
-            return View(viewModel);
+            // Tạo sản phẩm
+            var product = new Product
+            {
+                Name = model.Name,
+                Description = model.Description,
+                Price = model.Price,
+                Stock = model.Stock,
+                Image = uniqueFileName, // Null nếu không có hình ảnh
+                CategoryId = model.CategoryId,
+                CreatedDate = DateTime.Now,
+                CreatedBy = "admin" // Tạm thời sử dụng "admin"
+            };
+
+            try
+            {
+                _context.Products.Add(product);
+                _logger.LogInformation($"Entity state: {_context.Entry(product).State}"); // Phải là 'Added'
+
+                var affected = await _context.SaveChangesAsync();
+                _logger.LogInformation($"Rows affected: {affected}");
+
+                // Redirect đến trang Index nếu lưu thành công
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error saving product: {ex.Message}");
+                ModelState.AddModelError(string.Empty, "Error saving product.");
+                LoadData(); // 🔥 Đừng quên đây nữa
+                return View(model);
+            }
         }
+
+
+
+
+
+
+
+
 
 
 
@@ -176,22 +189,36 @@ namespace YourProject.Areas.Admin.Controllers
             var product = _context.Products.Find(id);
             if (product == null)
                 return NotFound();
-            return View(product);
+
+            var model = new ProductEditViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description,
+                Stock = product.Stock,
+                Image = product.Image,
+                CategoryId = product.CategoryId
+            };
+
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", product.CategoryId);
+            return View(model);
         }
 
+
         [HttpPost]
-        public IActionResult Edit(Product product, IFormFile imageFile)
+        public IActionResult Edit(ProductEditViewModel model, IFormFile imageFile)
         {
             if (ModelState.IsValid)
             {
-                var existing = _context.Products.Find(product.Id);
+                var existing = _context.Products.Find(model.Id);
                 if (existing == null)
                     return NotFound();
 
-                // Cập nhật ảnh nếu có file mới
                 if (imageFile != null && imageFile.Length > 0)
                 {
-                    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+                    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/products");
+
                     string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
@@ -200,23 +227,24 @@ namespace YourProject.Areas.Admin.Controllers
                         imageFile.CopyTo(stream);
                     }
 
-                    existing.Image = "/images/" + uniqueFileName;
+                    existing.Image = uniqueFileName;
+
                 }
 
-                // Cập nhật các trường
-                existing.Name = product.Name;
-                existing.Price = product.Price;
-                existing.Description = product.Description;
-                existing.Stock = product.Stock;
-                existing.CategoryId = product.CategoryId;
-                existing.Category_name = product.Category_name;
+                existing.Name = model.Name;
+                existing.Price = model.Price;
+                existing.Description = model.Description;
+                existing.Stock = model.Stock;
+                existing.CategoryId = model.CategoryId;
 
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(product);
+            ViewData["CategoryId"] = new SelectList(_context.Category, "Id", "Name", model.CategoryId);
+            return View(model);
         }
+
 
 
         public IActionResult Delete(int id)

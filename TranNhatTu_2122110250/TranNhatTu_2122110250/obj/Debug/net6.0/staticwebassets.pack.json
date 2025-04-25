@@ -37,6 +37,14 @@
       "PackagePath": "staticwebassets\\css\\login\\style.css"
     },
     {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\269d65cd-ed5b-4369-9f05-b58da7beb9e9_dh2.png",
+      "PackagePath": "staticwebassets\\images\\269d65cd-ed5b-4369-9f05-b58da7beb9e9_dh2.png"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\6e5b5fb9-cbb7-47f9-9dfc-8441c394e2b9_dh1.png",
+      "PackagePath": "staticwebassets\\images\\6e5b5fb9-cbb7-47f9-9dfc-8441c394e2b9_dh1.png"
+    },
+    {
       "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\banners\\.DS_Store",
       "PackagePath": "staticwebassets\\images\\banners\\.DS_Store"
     },
@@ -109,6 +117,10 @@
       "PackagePath": "staticwebassets\\images\\banners\\slide3.jpg"
     },
     {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\bbe788a6-1ab6-4dee-9f3c-d39a2cd1484b_dh1.png",
+      "PackagePath": "staticwebassets\\images\\bbe788a6-1ab6-4dee-9f3c-d39a2cd1484b_dh1.png"
+    },
+    {
       "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\categories\\1.jpg",
       "PackagePath": "staticwebassets\\images\\categories\\1.jpg"
     },
@@ -123,6 +135,10 @@
     {
       "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\categories\\banner2.png",
       "PackagePath": "staticwebassets\\images\\categories\\banner2.png"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\dfa637e7-87b7-487c-bfa6-14d2b06f85aa_dt2.png",
+      "PackagePath": "staticwebassets\\images\\dfa637e7-87b7-487c-bfa6-14d2b06f85aa_dt2.png"
     },
     {
       "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\icons\\.DS_Store",
@@ -289,8 +305,36 @@
       "PackagePath": "staticwebassets\\images\\products\\4.png"
     },
     {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\44d9ea4d-4524-4993-acbb-106a2d8de710_dh1.png",
+      "PackagePath": "staticwebassets\\images\\products\\44d9ea4d-4524-4993-acbb-106a2d8de710_dh1.png"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\46e85c2b-9d28-4237-938d-10c2d61dbc62.png",
+      "PackagePath": "staticwebassets\\images\\products\\46e85c2b-9d28-4237-938d-10c2d61dbc62.png"
+    },
+    {
       "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\6.jpg",
       "PackagePath": "staticwebassets\\images\\products\\6.jpg"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\6f695756-27eb-4a58-944d-ce78b3255a6e.png",
+      "PackagePath": "staticwebassets\\images\\products\\6f695756-27eb-4a58-944d-ce78b3255a6e.png"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\6f7364d0-ebe9-4895-a131-8006cdf7d530_product07.png",
+      "PackagePath": "staticwebassets\\images\\products\\6f7364d0-ebe9-4895-a131-8006cdf7d530_product07.png"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\75cd6b2b-f600-4513-a002-45366f3df8b5_dh2.png",
+      "PackagePath": "staticwebassets\\images\\products\\75cd6b2b-f600-4513-a002-45366f3df8b5_dh2.png"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\81900283-256b-4778-9ec8-ecea9652251e_pk6.png",
+      "PackagePath": "staticwebassets\\images\\products\\81900283-256b-4778-9ec8-ecea9652251e_pk6.png"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\9418ec84-33b9-465c-b1e7-29f08abf04e1_dt3.png",
+      "PackagePath": "staticwebassets\\images\\products\\9418ec84-33b9-465c-b1e7-29f08abf04e1_dt3.png"
     },
     {
       "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\GalaxyS5.3DS",
@@ -299,6 +343,22 @@
     {
       "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\GalaxyS5.glb",
       "PackagePath": "staticwebassets\\images\\products\\GalaxyS5.glb"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\a256067b-49a7-420f-97f9-d4b32cf94bc9.png",
+      "PackagePath": "staticwebassets\\images\\products\\a256067b-49a7-420f-97f9-d4b32cf94bc9.png"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\c17cc5f8-3f9e-4805-ba96-5d6f60e1ec87_dh3.png",
+      "PackagePath": "staticwebassets\\images\\products\\c17cc5f8-3f9e-4805-ba96-5d6f60e1ec87_dh3.png"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\d66d0d23-1fb0-4731-82fa-efa7356b6647.png",
+      "PackagePath": "staticwebassets\\images\\products\\d66d0d23-1fb0-4731-82fa-efa7356b6647.png"
+    },
+    {
+      "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\daba6d52-0cbc-4f52-b490-5feedf30f82e.png",
+      "PackagePath": "staticwebassets\\images\\products\\daba6d52-0cbc-4f52-b490-5feedf30f82e.png"
     },
     {
       "Id": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\dien1.png",

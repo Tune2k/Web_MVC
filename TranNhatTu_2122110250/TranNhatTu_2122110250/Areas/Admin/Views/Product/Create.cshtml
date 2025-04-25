@@ -10,33 +10,33 @@
 
 @section Scripts {
     <script>
-        function previewImage(input) {
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const img = document.getElementById('previewImage');
-                    img.src = e.target.result;
-                    img.style.display = 'block';
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
         document.addEventListener("DOMContentLoaded", function () {
             const inputFile = document.getElementById('imageFile');
-            if (inputFile) {
-                inputFile.addEventListener('change', function () {
-                    previewImage(this);
-                });
-            }
+            const previewImage = document.getElementById('previewImage');
+
+            inputFile.addEventListener('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        previewImage.src = e.target.result;
+                        previewImage.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file); // Chỉ để xem trước, không ảnh hưởng đến việc lưu
+                }
+            });
         });
     </script>
+
+
+
 }
 
 <div class="form-wrapper">
     <div class="form-card">
         <h2 class="form-title">➕ Thêm sản phẩm mới</h2>
-        @if (!string.IsNullOrEmpty(Model.CategoryLoadError))
+
+        @if (Model != null && !string.IsNullOrEmpty(Model.CategoryLoadError))
         {
             <div class="alert alert-danger">
                 @Model.CategoryLoadError
@@ -46,45 +46,43 @@
 
         <form asp-action="Create" method="post" enctype="multipart/form-data" class="product-form">
             <div class="form-group">
-                <label asp-for="Product.Name">Tên sản phẩm</label>
-                <input asp-for="Product.Name" class="form-control" placeholder="Nhập tên sản phẩm" />
-                <span asp-validation-for="Product.Name" class="text-danger"></span>
+                @Html.LabelFor(model => model.Name)
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Nhập tên sản phẩm" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label asp-for="Product.Price">Giá</label>
-                <input asp-for="Product.Price" class="form-control" type="number" min="0" step="1000" placeholder="Nhập giá bán" />
-                <span asp-validation-for="Product.Price" class="text-danger"></span>
+                @Html.LabelFor(model => model.Price)
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control", type = "number", min = "0", step = "1000", placeholder = "Nhập giá bán" })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label asp-for="Product.Description">Mô tả sản phẩm</label>
-                <textarea asp-for="Product.Description" class="form-control" rows="4"></textarea>
-                <span asp-validation-for="Product.Description" class="text-danger"></span>
+                @Html.LabelFor(model => model.Description)
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 4 })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label asp-for="Product.Stock">Tồn kho</label>
-                <input asp-for="Product.Stock" class="form-control" type="number" min="0" />
-                <span asp-validation-for="Product.Stock" class="text-danger"></span>
+                @Html.LabelFor(model => model.Stock)
+                @Html.TextBoxFor(model => model.Stock, new { @class = "form-control", type = "number", min = "0" })
+                @Html.ValidationMessageFor(model => model.Stock, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
-                <label asp-for="Product.CategoryId">Danh mục</label>
-                <select asp-for="Product.CategoryId" class="form-control">
-                    @foreach (var item in ViewBag.ListCategory as List<SelectListItem>)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-                </select>
-                <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                @Html.LabelFor(model => model.CategoryId)
+                @Html.DropDownListFor(
+                model => model.CategoryId,
+                (SelectList)ViewData["CategoryId"],
+                "Select a Category",
+                new { @class = "form-control" }
+                )
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
 
-
-
             <div class="form-group">
-                <label>Ảnh sản phẩm</label>
-                <input type="file" id="imageFile" name="ImageUpload" class="form-control-file" />
+                @Html.LabelFor(model => model.ImageFile, "Ảnh sản phẩm")
+                @Html.TextBoxFor(model => model.ImageFile, new { type = "file", @class = "form-control-file", id = "ImageFile" })
                 <img id="previewImage" style="display: none; max-width: 200px;" />
             </div>
 
