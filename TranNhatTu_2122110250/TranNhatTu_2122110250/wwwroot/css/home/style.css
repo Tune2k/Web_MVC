@@ -1,11 +1,22 @@
 ﻿/* style.css */
 
-/* Layout chung */
-body {
+/* Thiết lập chiều cao toàn bộ */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
 	font-family: Arial, sans-serif;
 	background-color: #f8f9fa;
 }
 
+/* Phần nội dung chính sẽ chiếm hết không gian còn lại */
+main {
+	flex: 1;
+}
+
+/* Header, Footer và các thành phần khác */
 h1, h3, h4 {
 	font-weight: 600;
 }

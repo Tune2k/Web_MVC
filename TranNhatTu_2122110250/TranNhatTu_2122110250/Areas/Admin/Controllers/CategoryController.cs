@@ -2,6 +2,7 @@
 using TranNhatTu_2122110250.Data;
 using TranNhatTu_2122110250.Model;
 using System.Linq;
+using TranNhatTu_2122110250.Areas.Admin.ViewModels;
 
 namespace TranNhatTu_2122110250.Areas.Admin.Controllers
 {
@@ -16,11 +17,35 @@ namespace TranNhatTu_2122110250.Areas.Admin.Controllers
         }
 
         // Action hiển thị danh sách các danh mục
-        public IActionResult Index()
+        public IActionResult Index(string searchTerm, int page = 1)
         {
-            var categories = _context.Category.ToList();
-            return View(categories);
+            int pageSize = 5;
+
+            var categoriesQuery = _context.Category.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                categoriesQuery = categoriesQuery.Where(c => c.Name.Contains(searchTerm));
+            }
+
+            int totalCategories = categoriesQuery.Count();
+            int totalPages = (int)Math.Ceiling(totalCategories / (double)pageSize);
+
+            var categories = categoriesQuery
+                .OrderBy(c => c.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return View(new CategoryIndexViewModel
+            {
+                Categories = categories,
+                SearchTerm = searchTerm,
+                CurrentPage = page,
+                TotalPages = totalPages
+            });
         }
+
 
         // GET: Action để hiển thị form tạo danh mục mới
         [HttpGet]

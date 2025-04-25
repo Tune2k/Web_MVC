@@ -31,17 +31,38 @@ namespace YourProject.Areas.Admin.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string searchTerm, int page = 1)
         {
-            var products = _context.Products
-                                   .Include(p => p.Category) // Load danh mục liên quan
-                                   .ToList();
+            int pageSize = 5;
+
+            var productsQuery = _context.Products
+                .Include(p => p.Category)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                productsQuery = productsQuery
+                    .Where(p => p.Name.Contains(searchTerm));
+            }
+
+            int totalProducts = productsQuery.Count();
+            int totalPages = (int)Math.Ceiling(totalProducts / (double)pageSize);
+
+            var products = productsQuery
+                .OrderBy(p => p.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
 
             return View(new ProductIndexViewModel
             {
-                Products = products
+                Products = products,
+                CurrentPage = page,
+                TotalPages = totalPages,
+                SearchTerm = searchTerm
             });
         }
+
 
 
 

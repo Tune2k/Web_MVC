@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oBVpw2QpedI9tzlGK1SqdfOuPuyW6ca0S0uk7lJ8N5rJl6pesR3WLCx4MbDj6XN6kUIX5+upzXTsJiYuJkQ5+A==",
+  "dgSpecHash": "igUJ9IpMMlAXdOp0LcW1zI2LSl320t8wlCv/yt9tWQeDdFaR3N5K3NDp5OY5bbbL8OkxfQVGsLW9VQv2k7eAbw==",
   "success": true,
-  "projectFilePath": "D:\\ASP\\Đồ án ASP\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250.csproj",
+  "projectFilePath": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tune2\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\tune2\\.nuget\\packages\\microsoft.aspnet.mvc\\5.2.7\\microsoft.aspnet.mvc.5.2.7.nupkg.sha512",

@@ -1,4 +1,6 @@
-﻿@model List<TranNhatTu_2122110250.Model.User>
+﻿@* @model List<TranNhatTu_2122110250.Model.User> *@
+
+@model TranNhatTu_2122110250.Areas.Admin.ViewModels.UserIndexViewModel
 @{
     Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
 }
@@ -28,18 +30,11 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Users)
                 {
                     <tr>
                         <td>@item.Id</td>
                         <td>@item.Username</td>
-                        <!-- Form chỉnh sửa Role -->
-                        @* <td>
-                    <select name="role" class="form-select form-select-sm" style="min-width: 120px;">
-                    <option value="User" selected="@(item.Role == "User" ? "selected" : null)">User</option>
-                    <option value="Admin" selected="@(item.Role == "Admin" ? "selected" : null)">Admin</option>
-                    </select>
-                    </td> *@
                         <td>@item.Role</td>
                         <td>@item.Email</td>
                         <td>@item.Password</td> <!-- Hiển thị mật khẩu -->
@@ -54,3 +49,46 @@
         </table>
     </div>
 </div>
+<div class="pagination">
+    @if (Model.CurrentPage > 1)
+    {
+        <a href="@Url.Action("Index", new { page = Model.CurrentPage - 1, searchTerm = Model.SearchTerm })">« Trước</a>
+    }
+    @for (int i = 1; i <= Model.TotalPages; i++)
+    {
+        <a class="@(i == Model.CurrentPage ? "active-page" : "")"
+           href="@Url.Action("Index", new { page = i })">@i</a>
+    }
+    @if (Model.CurrentPage < Model.TotalPages)
+    {
+        <a href="@Url.Action("Index", new { page = Model.CurrentPage + 1, searchTerm = Model.SearchTerm })">Tiếp »</a>
+    }
+</div>
+
+<style>
+    .pagination {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+        .pagination a {
+            margin: 0 4px;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: #333;
+            border-radius: 4px;
+        }
+
+            .pagination a.active-page {
+                font-weight: bold;
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+            }
+
+            .pagination a:hover {
+                background-color: #0056b3;
+                color: white;
+            }
+</style>

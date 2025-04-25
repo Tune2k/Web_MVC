@@ -1,0 +1,33 @@
+﻿@model TranNhatTu_2122110250.Model.Order
+
+<h1>Chi tiết Đơn hàng #@Model.Id</h1>
+
+<div>
+    <p><strong>Ngày đặt:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
+    <p><strong>Họ tên:</strong> @Model.CustomerName</p>
+    <p><strong>Email:</strong> @Model.CustomerEmail</p>
+    <p><strong>Tổng giá:</strong> @Model.TotalPrice.ToString("#,##0") VND</p>
+
+    <h3>Chi tiết các sản phẩm</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tổng giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detail in Model.OrderDetail)
+            {
+                <tr>
+                    <td>@detail.Product.Name</td>
+                    <td>@detail.Price.ToString("#,##0") VND</td>
+                    <td>@detail.Quantity</td>
+                    <td>@((detail.Price * detail.Quantity).ToString("#,##0")) VND</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

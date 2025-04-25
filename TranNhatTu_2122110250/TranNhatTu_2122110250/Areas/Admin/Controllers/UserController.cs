@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TranNhatTu_2122110250.Data;
 using TranNhatTu_2122110250.Model;
 using System.Linq;
+using TranNhatTu_2122110250.Areas.Admin.ViewModels;
 
 namespace TranNhatTu_2122110250.Areas.Admin.Controllers
 {
@@ -18,11 +19,31 @@ namespace TranNhatTu_2122110250.Areas.Admin.Controllers
         }
 
         // Hiển thị danh sách người dùng
-        public IActionResult Index()
+        public IActionResult Index(string searchTerm, int page = 1, int pageSize = 5)
         {
-            var users = _context.User.ToList(); // Lấy danh sách người dùng từ DbContext
-            return View(users); // Trả về View danh sách người dùng
+            var query = _context.User.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query = query.Where(u => u.Username.Contains(searchTerm));
+            }
+
+            int totalUsers = query.Count();
+            var users = query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var model = new UserIndexViewModel
+            {
+                Users = users,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling(totalUsers / (double)pageSize)
+            };
+
+            return View(model);
         }
+
 
         // Hiển thị trang tạo người dùng
         public IActionResult Create()

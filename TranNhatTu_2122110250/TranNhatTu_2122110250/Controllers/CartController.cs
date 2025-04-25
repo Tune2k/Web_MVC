@@ -52,8 +52,9 @@ public class CartController : Controller
     }
 
     [HttpPost]
-    public IActionResult AddToCart(int id)
+    public IActionResult AddToCart(int id, int quantity)
     {
+        // In ra giá trị của các tham số trong Request để kiểm tra
         foreach (var key in Request.Form.Keys)
         {
             Console.WriteLine($"{key} = {Request.Form[key]}");
@@ -69,6 +70,13 @@ public class CartController : Controller
         {
             TempData["Message"] = "Sản phẩm không khả dụng.";
             return RedirectToAction("Index", "Home");
+        }
+
+        // Kiểm tra số lượng yêu cầu không vượt quá tồn kho
+        if (quantity <= 0 || quantity > product.Stock)
+        {
+            TempData["Message"] = "Số lượng không hợp lệ hoặc vượt quá tồn kho.";
+            return RedirectToAction("Index", "Product", new { id = product.Id });
         }
 
         // Lấy giỏ hàng của user (nếu có), hoặc tạo mới
@@ -92,9 +100,10 @@ public class CartController : Controller
         var existingItem = cart.Items.FirstOrDefault(i => i.ProductId == product.Id);
         if (existingItem != null)
         {
-            if (existingItem.Quantity < product.Stock)
+            // Nếu có thì cập nhật số lượng
+            if (existingItem.Quantity + quantity <= product.Stock)
             {
-                existingItem.Quantity++;
+                existingItem.Quantity += quantity;
             }
             else
             {
@@ -104,6 +113,7 @@ public class CartController : Controller
         }
         else
         {
+            // Nếu không có, tạo mới item trong giỏ
             var cartItem = new CartItem
             {
                 CartId = cart.Id,
@@ -111,7 +121,7 @@ public class CartController : Controller
                 Name = product.Name,
                 Image = product.Image,
                 Price = product.Price,
-                Quantity = 1,
+                Quantity = quantity, // Sử dụng số lượng từ form
                 Stock = product.Stock
             };
             _context.CartItems.Add(cartItem);
@@ -159,59 +169,64 @@ public class CartController : Controller
             return RedirectToAction("Index");
         }
 
-        // In cartItems ra để kiểm tra
-        foreach (var item in cartItems)
-        {
-            Console.WriteLine($"ProductId: {item.ProductId}, Quantity: {item.Quantity}");
-        }
-
         var userId = GetUserId();
         if (userId == null)
         {
-            return RedirectToAction("Login", "Account"); // Redirect nếu chưa đăng nhập
+            return RedirectToAction("Login", "Account");
         }
 
+        // Lấy giỏ hàng của user từ DB
         var cart = _context.Carts
             .Include(c => c.Items)
             .FirstOrDefault(c => c.UserId == userId);
 
-        // Kiểm tra cartItems và update
+        if (cart == null)
+        {
+            TempData["Message"] = "Không tìm thấy giỏ hàng!";
+            return RedirectToAction("Index");
+        }
+
         foreach (var item in cartItems)
         {
-            var existingItem = cart.Items.FirstOrDefault(ci => ci.ProductId == item.ProductId);
+            var existingItem = cart.Items.FirstOrDefault(ci => ci.Id == item.Id);
             var product = _context.Products.FirstOrDefault(p => p.Id == item.ProductId);
 
             if (existingItem != null && product != null)
             {
                 if (item.Quantity <= 0)
                 {
-                    cart.Items.Remove(existingItem);  // Xóa sản phẩm khỏi giỏ hàng nếu số lượng <= 0
+                    _context.CartItems.Remove(existingItem); // Xóa nếu số lượng <= 0
                 }
-                else if (product.Stock >= item.Quantity)
+                else if (item.Quantity <= product.Stock)
                 {
-                    existingItem.Quantity = item.Quantity;  // Cập nhật số lượng
-                    _context.Entry(existingItem).State = EntityState.Modified;  // Đặt trạng thái là Modified
+                    existingItem.Quantity = item.Quantity;
+
+                    // Đặt trạng thái là Modified để EF theo dõi thay đổi
+                    _context.Entry(existingItem).State = EntityState.Modified;
+
+                    // In ra để kiểm tra
+                    Console.WriteLine($"Updating item with Id: {existingItem.Id}, New Quantity: {existingItem.Quantity}");
                 }
                 else
                 {
-                    TempData["Message"] = $"Không đủ hàng cho {product.Name}";  // Thông báo nếu không đủ hàng
+                    TempData["Message"] = $"Không đủ hàng cho sản phẩm {product.Name}";
                 }
             }
         }
 
         try
         {
-            _context.SaveChanges();
+            _context.SaveChanges(); // Lưu thay đổi vào DB
+            TempData["Message"] = "Đã cập nhật giỏ hàng!";
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error: {ex.Message}");
-            TempData["Message"] = "Có lỗi xảy ra khi cập nhật giỏ hàng!";
+            Console.WriteLine("Error saving cart: " + ex.Message);
+            TempData["Message"] = "Lỗi khi lưu giỏ hàng!";
         }
 
         return RedirectToAction("Index");
     }
-
 
 
 

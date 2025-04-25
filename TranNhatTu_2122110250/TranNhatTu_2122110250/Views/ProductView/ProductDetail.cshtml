@@ -60,15 +60,14 @@
                 }
             </ul>
 
-@* <form asp-controller="Cart" asp-action="AddToCart" method="post">
-    <input type="hidden" name="id" value="@Model.Id" />
-    <button type="submit" class="btn btn-outline-primary btn-lg btn-block btn-custom-color"
-    @(Model.Stock == 0 ? "disabled" : "")>
-        Thêm vào giỏ hàng
-    </button>
-</form> *@
             <form action="/Cart/AddToCart" method="post">
                 <input type="hidden" name="id" value="@Model.Id" />
+
+                <!-- Thêm input cho số lượng -->
+                <div class="form-group my-3">
+                    <label for="quantity">Số lượng:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="@Model.Stock" class="form-control" value="1" required />
+                </div>
                 <button type="submit" class="btn btn-primary">Thêm vào giỏ hàng</button>
             </form>
 
