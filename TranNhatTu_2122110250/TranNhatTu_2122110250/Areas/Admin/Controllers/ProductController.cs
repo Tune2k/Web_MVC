@@ -283,12 +283,24 @@ namespace YourProject.Areas.Admin.Controllers
             var product = _context.Products.Find(id);
             if (product != null)
             {
-                _context.Products.Remove(product);
-                _context.SaveChanges();
+                try
+                {
+                    _context.Products.Remove(product);
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    // Ghi log nếu cần: _logger.LogError(ex, "Error deleting product");
+
+                    TempData["ErrorMessage"] = "Không thể xóa sản phẩm này vì nó đang được sử dụng trong các đơn hàng hoặc bảng liên quan.";
+                    return RedirectToAction("Index");
+                }
             }
 
+            TempData["SuccessMessage"] = "Xóa sản phẩm thành công.";
             return RedirectToAction("Index");
         }
+
 
 
 

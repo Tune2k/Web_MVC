@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mmin32aOEQyvMWZkpArjhqnqvzXsJ58K9Z4TyeIgfuk=",
+  "Hash": "Qizk873s14bjUxBIWEOKIusmpt10hhiWGRgutpdOwAw=",
   "Source": "TranNhatTu_2122110250",
   "BasePath": "_content/TranNhatTu_2122110250",
   "Mode": "Default",
@@ -1292,6 +1292,23 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\10.png"
     },
     {
+      "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\10b795ae-8222-44d1-aef6-07ad6dc72350_tb1.png",
+      "SourceId": "TranNhatTu_2122110250",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\",
+      "BasePath": "_content/TranNhatTu_2122110250",
+      "RelativePath": "images/products/10b795ae-8222-44d1-aef6-07ad6dc72350_tb1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\10b795ae-8222-44d1-aef6-07ad6dc72350_tb1.png"
+    },
+    {
       "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\2.jpg",
       "SourceId": "TranNhatTu_2122110250",
       "SourceType": "Discovered",
@@ -1307,6 +1324,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\2.jpg"
+    },
+    {
+      "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\20f3eb13-ee08-4f1a-a746-ca3cbc964b1a_dh3.png",
+      "SourceId": "TranNhatTu_2122110250",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\",
+      "BasePath": "_content/TranNhatTu_2122110250",
+      "RelativePath": "images/products/20f3eb13-ee08-4f1a-a746-ca3cbc964b1a_dh3.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\20f3eb13-ee08-4f1a-a746-ca3cbc964b1a_dh3.png"
+    },
+    {
+      "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\25497d8c-22bb-4b1c-889d-866b99428625.png",
+      "SourceId": "TranNhatTu_2122110250",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\",
+      "BasePath": "_content/TranNhatTu_2122110250",
+      "RelativePath": "images/products/25497d8c-22bb-4b1c-889d-866b99428625.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\25497d8c-22bb-4b1c-889d-866b99428625.png"
     },
     {
       "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\2ecf7836-c947-4eef-bf57-7e3ec359536d_dh2.png",
@@ -1341,6 +1392,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\3.jpg"
+    },
+    {
+      "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\317f811b-9b68-4a40-a149-7d650c6d337f.png",
+      "SourceId": "TranNhatTu_2122110250",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\",
+      "BasePath": "_content/TranNhatTu_2122110250",
+      "RelativePath": "images/products/317f811b-9b68-4a40-a149-7d650c6d337f.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\317f811b-9b68-4a40-a149-7d650c6d337f.png"
     },
     {
       "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\4.png",
@@ -1513,6 +1581,23 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\a256067b-49a7-420f-97f9-d4b32cf94bc9.png"
     },
     {
+      "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\b5a61f21-5f24-4ad1-8f06-a6c4ca3bc147.png",
+      "SourceId": "TranNhatTu_2122110250",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\",
+      "BasePath": "_content/TranNhatTu_2122110250",
+      "RelativePath": "images/products/b5a61f21-5f24-4ad1-8f06-a6c4ca3bc147.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\b5a61f21-5f24-4ad1-8f06-a6c4ca3bc147.png"
+    },
+    {
       "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\c17cc5f8-3f9e-4805-ba96-5d6f60e1ec87_dh3.png",
       "SourceId": "TranNhatTu_2122110250",
       "SourceType": "Discovered",
@@ -1528,6 +1613,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\c17cc5f8-3f9e-4805-ba96-5d6f60e1ec87_dh3.png"
+    },
+    {
+      "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\d3569a70-866c-436c-abce-3dae1b47b22d.png",
+      "SourceId": "TranNhatTu_2122110250",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\",
+      "BasePath": "_content/TranNhatTu_2122110250",
+      "RelativePath": "images/products/d3569a70-866c-436c-abce-3dae1b47b22d.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\d3569a70-866c-436c-abce-3dae1b47b22d.png"
     },
     {
       "Identity": "D:\\ASP\\DoAn\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\TranNhatTu_2122110250\\wwwroot\\images\\products\\d66d0d23-1fb0-4731-82fa-efa7356b6647.png",

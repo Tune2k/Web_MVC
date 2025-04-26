@@ -66,8 +66,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
      .EnableSensitiveDataLogging()  // Cho phép in dữ liệu
      .LogTo(Console.WriteLine, LogLevel.Information) // Ghi log query ra console
     );
+// Thêm CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", builder =>
+    {
+        builder.WithOrigins("http://localhost:3000", "http://192.168.1.8:3000 ") // Cho phép frontend ReactJS
+               .AllowAnyHeader()                     // Cho phép tất cả header (bao gồm Authorization)
+               .AllowAnyMethod();                    // Cho phép tất cả phương thức (GET, POST, v.v.)
+    });
+}); 
 
-// Cấu hình Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -102,7 +111,12 @@ var app = builder.Build();
 
 // Cấu hình routing
 app.UseRouting();
-
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 // 👇 Thêm đoạn redirect ngay đây
 app.Use(async (context, next) =>
 {
@@ -120,7 +134,8 @@ app.Use(async (context, next) =>
 
 // Sử dụng session
 app.UseSession();  // Middleware để sử dụng session
-
+// 👇 3. Kích hoạt CORS - phải trước UseAuthorization
+app.UseCors("AllowReactApp");
 // Sử dụng các middleware để xác thực và phân quyền
 app.UseAuthentication();   // Cần phải gọi UseAuthentication trước UseAuthorization
 app.UseAuthorization();

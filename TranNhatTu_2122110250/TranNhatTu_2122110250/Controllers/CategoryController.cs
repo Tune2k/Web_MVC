@@ -6,7 +6,7 @@ using TranNhatTu_2122110250.Model;
 
 namespace TranNhatTu_2122110250.Controllers
 {
-    [Authorize] // 👈 Yêu cầu token để truy cập API
+    //[Authorize] // 👈 Yêu cầu token để truy cập API
     [ApiController]
     [Route("api/[controller]")]
     public class CategoryController : ControllerBase
